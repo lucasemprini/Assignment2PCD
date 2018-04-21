@@ -1,5 +1,6 @@
 package view;
 
+import exercise01.DummyFileReader;
 import javafx.scene.control.*;
 
 public class ViewController {
@@ -13,4 +14,15 @@ public class ViewController {
     public Label filesPercentage;
     public Label meanNumberOfMatches;
     public ListView filesListView;
+
+    public void initialize() {
+        this.addSearchListener();
+    }
+
+    private void addSearchListener() {
+        this.buttonSearch.setOnAction( e -> {
+            DummyFileReader df = new DummyFileReader();
+            df.readFile();
+        });
+    }
 }
