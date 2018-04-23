@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewController {
     public TextField maxDepthField;
@@ -49,12 +51,12 @@ public class ViewController {
     private boolean isDepthANumber(final String depth) {
         final int integerDepth;
         try {
-            integerDepth =Integer.parseInt(depth);
+            integerDepth = Integer.parseInt(depth);
         }
         catch(NumberFormatException nfe) {
             return false;
         }
-        return integerDepth > 0;
+        return integerDepth >= 0;
     }
 
     private void addSearchListener() {
@@ -65,8 +67,10 @@ public class ViewController {
                 final String path = this.getPathFromField();
                 final int depth = this.getDepthFromField();
                 File file = new File(path);
-                if(file.isDirectory() && depth > 0) {
-                    final Folder folder = Folder.fromDirectory(file);
+                if(file.isDirectory() && depth >= 0) {
+                    final Folder folder = Folder.fromDirectory(file, depth);
+                    System.out.println(folder);
+
                     this.callTasks(folder, wordCounter, depth);
                 } else {
                     this.showAlert();
@@ -86,14 +90,18 @@ public class ViewController {
     }
 
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
-        long counts;
+        Map<String, Long> counts;
         long startTime;
         long stopTime;
+
+        /*
 
         startTime = System.currentTimeMillis();
         counts = wordCounter.countOccurrencesOnSingleThread(folder, "new", depth);
         stopTime = System.currentTimeMillis();
         System.out.println(counts + " , single thread search took " + (stopTime - startTime) + "ms");
+
+        */
 
         startTime = System.currentTimeMillis();
         counts = wordCounter.countOccurrencesInParallel(folder, "new", depth);

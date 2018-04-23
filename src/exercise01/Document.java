@@ -10,6 +10,7 @@ import java.util.List;
 public class Document {
 
 	private final List<String> lines;
+	private static String name = "null";
     
     private Document(List<String> lines) {
         this.lines = lines;
@@ -22,6 +23,7 @@ public class Document {
     public static Document fromFile(File file) throws IOException {
         List<String> lines = new LinkedList<String>();
         BufferedReader reader;
+        name = file.getName();
         try {
         	reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
@@ -33,5 +35,10 @@ public class Document {
         	ex.printStackTrace();
         } 
         return new Document(lines);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -1,8 +1,9 @@
 package exercise01;
 
+import java.util.Map;
 import java.util.concurrent.RecursiveTask;
 
-public class DocumentSearchTask extends RecursiveTask<Long> {
+public class DocumentSearchTask extends RecursiveTask<Map<String, Long>> {
     
 	private final Document document;
     private final String searchedWord;
@@ -16,7 +17,7 @@ public class DocumentSearchTask extends RecursiveTask<Long> {
     }
     
     @Override
-    protected Long compute() {
+    protected Map<String, Long> compute() {
         return wc.occurrencesCount(document, searchedWord);
     }
 }
