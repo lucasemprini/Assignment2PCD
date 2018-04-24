@@ -6,6 +6,7 @@ import exercise01.WordCounter;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.util.Pair;
+import utility.MathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,10 +33,6 @@ public class ViewController {
     private static final String LIST_PRESENTATION = "List of matching files:";
 
     private Map<String, Long> filesMap;
-
-
-    //private List<String> list = new ArrayList<>();
-    //private ListProperty<String> listProperty = new SimpleListProperty<>();
 
     public void initialize() {
         this.addSearchListener();
@@ -71,7 +68,6 @@ public class ViewController {
 
     private void addSearchListener() {
         this.buttonSearch.setOnAction( e -> {
-
             final WordCounter wordCounter = new WordCounter();
             try {
                 final String path = this.getPathFromField();
@@ -86,14 +82,6 @@ public class ViewController {
             } catch (IOException e1) {
                 this.showAlert();
             }
-
-            /*
-            DummyFileReader df = new DummyFileReader();
-            list = df.readFile();
-            listProperty.set(FXCollections.observableArrayList(list));
-            this.filesListView.itemsProperty().bind(listProperty);
-            System.out.println(list);
-            */
         });
     }
 
@@ -141,12 +129,7 @@ public class ViewController {
             totMatches += p.getValue();
         }
         final Double meanMatches = totMatches / (double) filesWithAtLeastOne.size();
-        this.meanNumberOfMatchesLabel.setText(Double.toString(roundAvoid(meanMatches)));
-        this.filesPercentageLabel.setText(Double.toString(roundAvoid(percentage))+ " %");
-    }
-
-    private static double roundAvoid(double value) {
-        double scale = Math.pow(10, 2);
-        return Math.round(value * scale) / scale;
+        this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
+        this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage))+ " %");
     }
 }
