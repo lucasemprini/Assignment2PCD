@@ -1,5 +1,7 @@
 package exercise01;
 
+import utility.StringUtilities;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -26,13 +28,13 @@ public class Folder {
     }
     
     public static Folder fromDirectory(final File dir, int depth) throws IOException {
-        List<Document> documents = new LinkedList<Document>();
-        List<Folder> subFolders = new LinkedList<Folder>();
+        List<Document> documents = new LinkedList<>();
+        List<Folder> subFolders = new LinkedList<>();
 
         for (File entry : Objects.requireNonNull(dir.listFiles())) {
             if (entry.isDirectory() && depth >= 0) {
                 subFolders.add(Folder.fromDirectory(entry, depth-1));
-            } else if (entry.getName().endsWith("java")){
+            } else if (StringUtilities.isFileTextual(entry.getName())){
                 documents.add(Document.fromFile(entry));
             }
         }

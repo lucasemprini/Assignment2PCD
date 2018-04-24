@@ -1,9 +1,13 @@
 package exercise01;
 
+import utility.StringUtilities;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,8 +37,8 @@ public class Document {
             }
         } catch (Exception ex){
         	ex.printStackTrace();
-        } 
-        return new Document(file.getName(), lines);
+        }
+        return new Document(StringUtilities.treePath(file.getPath()), lines);
     }
 
     @Override
