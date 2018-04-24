@@ -5,8 +5,6 @@
  */
 package exercise01;
 
-import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ForkJoinPool;

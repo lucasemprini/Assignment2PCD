@@ -12,6 +12,7 @@ public final class StringUtilities {
 
     public static String treePath(final String path) {
         final String regex = "(/)|(\\\\)";
-        return path.replaceAll(regex, "\n\\\\");
+        final String toReturn = path.replaceAll(regex, "\n\\\\");
+        return toReturn.substring(2);
     }
 }

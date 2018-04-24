@@ -28,7 +28,7 @@ public class FolderSearchTask extends RecursiveTask<Map<String, Long>> {
         List<RecursiveTask<Map<String, Long>>> forks = new LinkedList<>();
         if(maxDepth > 0 && folder.getSubFolders() != null) {
             for (Folder subFolder : folder.getSubFolders()) {
-                FolderSearchTask task = new FolderSearchTask(wc, subFolder, searchedWord, --maxDepth, map);
+                FolderSearchTask task = new FolderSearchTask(wc, subFolder, searchedWord, maxDepth-1, map);
                 forks.add(task);
                 task.fork();
             }

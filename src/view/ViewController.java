@@ -22,7 +22,6 @@ public class ViewController {
     public Label presentationLabel;
     public Label pathLabel;
     public Label maxDepthLabel;
-    public ScrollPane scrollPaneForListView;
     public Label filesPercentageLabel;
     public Label meanNumberOfMatchesLabel;
     public ListView<Pair<String, Long>> filesListView;
@@ -114,7 +113,7 @@ public class ViewController {
                     setText(null);
                     setStyle("");
                 } else {
-                    setText(entry.getKey() + ":             " + entry.getValue()
+                    setText(entry.getKey() + " :             " + entry.getValue()
                             + (entry.getValue() == 1 ? " occurrence " : " occurrences ") +" found");
                 }
             }

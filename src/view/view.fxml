@@ -70,11 +70,7 @@
                         </font></Label>
                         </top>
                         <center>
-                            <AnchorPane>
-                                <ScrollPane fx:id="scrollPaneForListView" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <ListView fx:id="filesListView" BorderPane.alignment="CENTER" />
-                                </ScrollPane>
-                            </AnchorPane>
+                            <ListView fx:id="filesListView" BorderPane.alignment="CENTER" />
                         </center>
                     </BorderPane>
                 </center>
