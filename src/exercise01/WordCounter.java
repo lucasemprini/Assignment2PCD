@@ -30,7 +30,6 @@ public class WordCounter {
             }
         }
         map.put(document.toString(), count);
-        System.out.println("IN WORD COUNTER: " + map);
         return map;
     }
 
@@ -50,7 +49,6 @@ public class WordCounter {
     }
     */
     public Map<String, Long> countOccurrencesInParallel(final Folder folder, final String searchedWord, int depth) {
-        //System.out.println("FOLDER: " + folder);
         return forkJoinPool.invoke(new FolderSearchTask(this, folder, searchedWord, depth, this.map));
     }
 

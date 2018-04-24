@@ -10,9 +10,10 @@ import java.util.List;
 public class Document {
 
 	private final List<String> lines;
-	private static String name = "null";
+	private String docName;
     
-    private Document(List<String> lines) {
+    private Document(final String docName, final List<String> lines) {
+        this.docName = docName;
         this.lines = lines;
     }
     
@@ -23,7 +24,6 @@ public class Document {
     public static Document fromFile(File file) throws IOException {
         List<String> lines = new LinkedList<String>();
         BufferedReader reader;
-        name = file.getName();
         try {
         	reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
@@ -34,11 +34,11 @@ public class Document {
         } catch (Exception ex){
         	ex.printStackTrace();
         } 
-        return new Document(lines);
+        return new Document(file.getName(), lines);
     }
 
     @Override
     public String toString() {
-        return name;
+        return docName;
     }
 }

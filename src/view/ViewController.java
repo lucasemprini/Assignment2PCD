@@ -1,14 +1,18 @@
 package view;
 
-import exercise01.DummyFileReader;
+import com.sun.javafx.collections.ObservableListWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ViewController {
     public TextField maxDepthField;
@@ -18,11 +22,17 @@ public class ViewController {
     public Label pathLabel;
     public Label maxDepthLabel;
     public ScrollPane scrollPaneForListView;
-    public Label filesPercentage;
-    public Label meanNumberOfMatches;
-    public ListView<String> filesListView;
+    public Label filesPercentageLabel;
+    public Label meanNumberOfMatchesLabel;
+    public ListView<Pair<String, Long>> filesListView;
+    public Label listPresentation;
 
     private static final String WRONG_INPUT = "WRONG INPUT!";
+    private static final String NO_FILES = " NO FILES FOUND!";
+    private static final String LIST_PRESENTATION = "List of matching files:";
+
+    private Map<String, Long> filesMap;
+
 
     //private List<String> list = new ArrayList<>();
     //private ListProperty<String> listProperty = new SimpleListProperty<>();
@@ -69,8 +79,6 @@ public class ViewController {
                 File file = new File(path);
                 if(file.isDirectory() && depth >= 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
-                    System.out.println(folder);
-
                     this.callTasks(folder, wordCounter, depth);
                 } else {
                     this.showAlert();
@@ -90,23 +98,55 @@ public class ViewController {
     }
 
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
-        Map<String, Long> counts;
-        long startTime;
-        long stopTime;
+        final List<Pair<String, Long>> list = new ArrayList<>();
+        final long startTime = System.currentTimeMillis();
+        this.filesMap = wordCounter.countOccurrencesInParallel(folder, "new", depth);
+        for(String s : filesMap.keySet()) {
+            list.add(new Pair<>(s, filesMap.get(s)));
+        }
+        final long stopTime = System.currentTimeMillis();
+        System.out.println(this.filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
+        this.setListView(list);
+        this.setLabels(list);
+    }
 
-        /*
+    private void setListView(final List<Pair<String, Long>> list) {
 
-        startTime = System.currentTimeMillis();
-        counts = wordCounter.countOccurrencesOnSingleThread(folder, "new", depth);
-        stopTime = System.currentTimeMillis();
-        System.out.println(counts + " , single thread search took " + (stopTime - startTime) + "ms");
+        this.filesListView.setVisible(!list.isEmpty());
+        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ""));
 
-        */
+        final ObservableList<Pair<String, Long>> obs = new ObservableListWrapper<>(list);
+        this.filesListView.setItems(obs);
+        this.filesListView.setCellFactory( l -> new ListCell<Pair<String, Long>>() {
 
-        startTime = System.currentTimeMillis();
-        counts = wordCounter.countOccurrencesInParallel(folder, "new", depth);
-        stopTime = System.currentTimeMillis();
-        System.out.println(counts + " , fork / join search took " + (stopTime - startTime) + "ms");
+            @Override
+            protected void updateItem(Pair<String, Long> entry, boolean empty) {
+                super.updateItem(entry, empty);
+                if (empty) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(entry.getKey() + ":             " + entry.getValue()
+                            + (entry.getValue() == 1 ? " occurrence " : " occurrences ") +" found");
+                }
+            }
+        });
+    }
 
+    private void setLabels(final List<Pair<String, Long>> list) {
+        final List<Pair<String, Long>> filesWithAtLeastOne = list.stream().filter(el -> el.getValue() > 0).collect(Collectors.toList());
+        final Double percentage = ((double) filesWithAtLeastOne.size() * 100) / (double) list.size();
+        double totMatches = 0;
+        for (Pair<String, Long> p : filesWithAtLeastOne) {
+            totMatches += p.getValue();
+        }
+        final Double meanMatches = totMatches / (double) filesWithAtLeastOne.size();
+        this.meanNumberOfMatchesLabel.setText(Double.toString(roundAvoid(meanMatches)));
+        this.filesPercentageLabel.setText(Double.toString(roundAvoid(percentage))+ " %");
+    }
+
+    private static double roundAvoid(double value) {
+        double scale = Math.pow(10, 2);
+        return Math.round(value * scale) / scale;
     }
 }

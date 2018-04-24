@@ -9,11 +9,12 @@ import java.util.Objects;
 public class Folder {
     private final List<Folder> subFolders;
     private final List<Document> documents;
-    private static String DIR = "";
+    private String dirName;
     
-    private Folder(List<Folder> subFolders, List<Document> documents) {
+    private Folder(final String dirName, final List<Folder> subFolders, final List<Document> documents) {
         this.subFolders = subFolders;
         this.documents = documents;
+        this.dirName = dirName;
     }
     
     public List<Folder> getSubFolders() {
@@ -27,7 +28,7 @@ public class Folder {
     public static Folder fromDirectory(final File dir, int depth) throws IOException {
         List<Document> documents = new LinkedList<Document>();
         List<Folder> subFolders = new LinkedList<Folder>();
-        DIR = dir.getName();
+
         for (File entry : Objects.requireNonNull(dir.listFiles())) {
             if (entry.isDirectory() && depth >= 0) {
                 subFolders.add(Folder.fromDirectory(entry, depth-1));
@@ -35,12 +36,12 @@ public class Folder {
                 documents.add(Document.fromFile(entry));
             }
         }
-        return new Folder(subFolders, documents);
+        return new Folder(dir.getName(), subFolders, documents);
     }
 
     @Override
     public String toString() {
-        String toReturn = DIR;
+        String toReturn = dirName;
         for (Folder fol : subFolders) {
             toReturn = toReturn.concat("\n" + fol.toString());
         }

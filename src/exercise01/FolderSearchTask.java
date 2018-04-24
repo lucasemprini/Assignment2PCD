@@ -36,13 +36,11 @@ public class FolderSearchTask extends RecursiveTask<Map<String, Long>> {
 
         for (Document document : folder.getDocuments()) {
             DocumentSearchTask task = new DocumentSearchTask(wc, document, searchedWord);
-            System.out.println("DOCUMENT: " + document);
             forks.add(task);
             task.fork();
         }
 
         for (RecursiveTask<Map<String, Long>> task : forks) {
-            System.out.println("IN TASK: " + task.join());
             task.join().forEach(map::putIfAbsent);
         }
         return map;
