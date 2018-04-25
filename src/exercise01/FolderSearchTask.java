@@ -10,25 +10,24 @@ public class FolderSearchTask extends RecursiveTask<Map<String, Long>> {
     private final Folder folder;
     private final String searchedWord;
     private final WordCounter wc;
-    private final Map<String, Long> map;
     private int maxDepth;
     
     FolderSearchTask(final WordCounter wc, final Folder folder,
-                     final String searchedWord, final int maxDepth, final Map<String, Long> map) {
+                     final String searchedWord, final int maxDepth) {
         super();
         this.wc = wc;
         this.folder = folder;
         this.searchedWord = searchedWord;
         this.maxDepth = maxDepth;
-        this.map = map;
     }
     
     @Override
     protected Map<String, Long> compute() {
         List<RecursiveTask<Map<String, Long>>> forks = new LinkedList<>();
-        if(maxDepth > 0 && folder.getSubFolders() != null) {
+        Map<String, Long> map = new HashMap<>();
+        if(maxDepth > 0 && !folder.getSubFolders().isEmpty()) {
             for (Folder subFolder : folder.getSubFolders()) {
-                FolderSearchTask task = new FolderSearchTask(wc, subFolder, searchedWord, maxDepth-1, map);
+                FolderSearchTask task = new FolderSearchTask(wc, subFolder, searchedWord, maxDepth-1);
                 forks.add(task);
                 task.fork();
             }

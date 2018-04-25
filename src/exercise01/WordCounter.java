@@ -12,7 +12,6 @@ import java.util.concurrent.ForkJoinPool;
 public class WordCounter {    
 
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
-    private final Map<String, Long> map = new HashMap<>();
 
     private String[] wordsIn(String line) {
         return line.trim().split("(\\s|\\p{Punct})+");
@@ -20,6 +19,7 @@ public class WordCounter {
     
     public Map<String, Long> occurrencesCount(Document document, String searchedWord) {
         long count = 0;
+        Map<String, Long> map = new HashMap<>();
         for (String line : document.getLines()) {
             for (String word : wordsIn(line)) {
                 if (searchedWord.equals(word)) {
@@ -47,7 +47,7 @@ public class WordCounter {
     }
     */
     public Map<String, Long> countOccurrencesInParallel(final Folder folder, final String searchedWord, int depth) {
-        return forkJoinPool.invoke(new FolderSearchTask(this, folder, searchedWord, depth, this.map));
+        return forkJoinPool.invoke(new FolderSearchTask(this, folder, searchedWord, depth));
     }
 
 }

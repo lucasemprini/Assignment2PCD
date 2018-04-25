@@ -13,7 +13,9 @@ public class Folder {
     private final List<Document> documents;
     private String dirName;
     
-    private Folder(final String dirName, final List<Folder> subFolders, final List<Document> documents) {
+    private Folder(final String dirName,
+                   final List<Folder> subFolders,
+                   final List<Document> documents) {
         this.subFolders = subFolders;
         this.documents = documents;
         this.dirName = dirName;
