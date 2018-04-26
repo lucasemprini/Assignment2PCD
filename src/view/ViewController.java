@@ -32,6 +32,11 @@ public class ViewController {
     private static final String NO_FILES = " NO FILES FOUND!";
     private static final String LIST_PRESENTATION = "List of matching files:";
 
+    /**
+     * REGULAR EXPRESSION DA TROVARE.
+     */
+    private static final String REGEXP_TO_MATCH = "[n, i][a-z]*";
+
     private Map<String, Long> filesMap;
 
     public void initialize() {
@@ -93,7 +98,7 @@ public class ViewController {
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         final List<Pair<String, Long>> list = new ArrayList<>();
         final long startTime = System.currentTimeMillis();
-        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile("[n, i][a-z]*"), depth);
+        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         for(String s : filesMap.keySet()) {
             list.add(new Pair<>(s, filesMap.get(s)));
         }
