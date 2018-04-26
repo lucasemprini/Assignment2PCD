@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ViewController {
-    public TextField maxDepthField;
     public TextField pathField;
+    public Spinner<Integer> maxDepthSpinner;
     public Button buttonSearch;
     public Label presentationLabel;
     public Label pathLabel;
@@ -46,23 +46,8 @@ public class ViewController {
         return this.pathField.getText();
     }
 
-    private int getDepthFromField() {
-        if(this.isDepthANumber(this.maxDepthField.getText())) {
-            return Integer.parseInt(this.maxDepthField.getText());
-        } else {
-            return -1;
-        }
-    }
-
-    private boolean isDepthANumber(final String depth) {
-        final int integerDepth;
-        try {
-            integerDepth = Integer.parseInt(depth);
-        }
-        catch(NumberFormatException nfe) {
-            return false;
-        }
-        return integerDepth >= 0;
+    private int getDepthFromSpinner() {
+        return this.maxDepthSpinner.getValue();
     }
 
     private void addSearchListener() {
@@ -70,7 +55,7 @@ public class ViewController {
             final WordCounter wordCounter = new WordCounter();
             try {
                 final String path = this.getPathFromField();
-                final int depth = this.getDepthFromField();
+                final int depth = this.getDepthFromSpinner();
                 File file = new File(path);
                 if(file.isDirectory() && depth >= 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
