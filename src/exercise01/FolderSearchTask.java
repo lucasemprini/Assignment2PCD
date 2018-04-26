@@ -5,19 +5,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RecursiveTask;
+import java.util.regex.Pattern;
 
 public class FolderSearchTask extends RecursiveTask<Map<String, Long>> {
     private final Folder folder;
-    private final String searchedWord;
+    private final Pattern searchedWord;
     private final WordCounter wc;
     private int maxDepth;
     
     FolderSearchTask(final WordCounter wc, final Folder folder,
-                     final String searchedWord, final int maxDepth) {
+                     final Pattern regexp, final int maxDepth) {
         super();
         this.wc = wc;
         this.folder = folder;
-        this.searchedWord = searchedWord;
+        this.searchedWord = regexp;
         this.maxDepth = maxDepth;
     }
     

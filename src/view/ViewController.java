@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ViewController {
@@ -72,7 +73,7 @@ public class ViewController {
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         final List<Pair<String, Long>> list = new ArrayList<>();
         final long startTime = System.currentTimeMillis();
-        this.filesMap = wordCounter.countOccurrencesInParallel(folder, "new", depth);
+        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile("[0-9]+"), depth);
         for(String s : filesMap.keySet()) {
             list.add(new Pair<>(s, filesMap.get(s)));
         }

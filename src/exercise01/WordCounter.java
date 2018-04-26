@@ -8,6 +8,8 @@ package exercise01;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordCounter {    
 
@@ -17,12 +19,13 @@ public class WordCounter {
         return line.trim().split("(\\s|\\p{Punct})+");
     }
     
-    public Map<String, Long> occurrencesCount(Document document, String searchedWord) {
+    public Map<String, Long> occurrencesCount(Document document, Pattern regexp) {
         long count = 0;
         Map<String, Long> map = new HashMap<>();
         for (String line : document.getLines()) {
             for (String word : wordsIn(line)) {
-                if (searchedWord.equals(word)) {
+                Matcher m =regexp.matcher(word);
+                if (m.matches()) {
                     count = count + 1;
                 }
             }
@@ -46,8 +49,8 @@ public class WordCounter {
         return count;
     }
     */
-    public Map<String, Long> countOccurrencesInParallel(final Folder folder, final String searchedWord, int depth) {
-        return forkJoinPool.invoke(new FolderSearchTask(this, folder, searchedWord, depth));
+    public Map<String, Long> countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
+        return forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
     }
 
 }
