@@ -97,13 +97,17 @@ public class ViewController {
      */
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         final List<Pair<String, Long>> list = new ArrayList<>();
+
         final long startTime = System.currentTimeMillis();
         this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
+        final long stopTime = System.currentTimeMillis();
+
         for(String s : filesMap.keySet()) {
             list.add(new Pair<>(s, filesMap.get(s)));
         }
-        final long stopTime = System.currentTimeMillis();
+
         System.out.println(this.filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
+
         this.setListView(list);
         this.setLabels(list);
     }
