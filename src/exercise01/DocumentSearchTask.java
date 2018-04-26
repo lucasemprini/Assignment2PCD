@@ -9,7 +9,13 @@ public class DocumentSearchTask extends RecursiveTask<Map<String, Long>> {
 	private final Document document;
     private final Pattern searchedWord;
     private final WordCounter wc;
-    
+
+    /**
+     * Costruttore per il Task del Document.
+     * @param wc l'istanza del WordCounter.
+     * @param document il Documento su cui cercare.
+     * @param searchedWord la Regular Expression da cercare.
+     */
     DocumentSearchTask(WordCounter wc, Document document, Pattern searchedWord) {
         super();
         this.document = document;

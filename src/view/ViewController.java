@@ -38,19 +38,33 @@ public class ViewController {
         this.addSearchListener();
     }
 
+    /**
+     * Metodo che attiva l'alert se un input è errato.
+     */
     private void showAlert() {
         final Alert alert = new Alert(Alert.AlertType.ERROR, WRONG_INPUT, ButtonType.CLOSE);
         alert.showAndWait();
     }
 
+    /**
+     * Metodo che chiede al TextField il testo passatogli in input.
+     * @return il testo digitato nel Field del path.
+     */
     private String getPathFromField() {
         return this.pathField.getText();
     }
 
+    /**
+     * Metodo che chiede allo Spinner il valore passatogli in input.
+     * @return il valore inserito nello Spinner della maxDepth.
+     */
     private int getDepthFromSpinner() {
         return this.maxDepthSpinner.getValue();
     }
 
+    /**
+     * Metodo che setta il Listener al Search Button.
+     */
     private void addSearchListener() {
         this.buttonSearch.setOnAction( e -> {
             final WordCounter wordCounter = new WordCounter();
@@ -70,6 +84,12 @@ public class ViewController {
         });
     }
 
+    /**
+     * Metodo che chiama il WordCounter e fa partire la ricerca.
+     * @param folder la Folder di partenza digitata in input.
+     * @param wordCounter l'istanza di WordCounter.
+     * @param depth la Max depth.
+     */
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         final List<Pair<String, Long>> list = new ArrayList<>();
         final long startTime = System.currentTimeMillis();
@@ -83,6 +103,10 @@ public class ViewController {
         this.setLabels(list);
     }
 
+    /**
+     * Metodo che setta la ListView con i valori trovati.
+     * @param list la lista di coppie String-Long.
+     */
     private void setListView(final List<Pair<String, Long>> list) {
 
         this.filesListView.setVisible(!list.isEmpty());
@@ -106,6 +130,10 @@ public class ViewController {
         });
     }
 
+    /**
+     * Metodo che setta le due label.
+     * @param list la lista di coppie String-Long.
+     */
     private void setLabels(final List<Pair<String, Long>> list) {
         final List<Pair<String, Long>> filesWithAtLeastOne = list.stream().filter(el -> el.getValue() > 0).collect(Collectors.toList());
         final Double percentage = ((double) filesWithAtLeastOne.size() * 100) / (double) list.size();

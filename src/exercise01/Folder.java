@@ -12,7 +12,13 @@ public class Folder {
     private final List<Folder> subFolders;
     private final List<Document> documents;
     private String dirName;
-    
+
+    /**
+     * Costruttore della classe Folder.
+     * @param dirName il nome della Directory.
+     * @param subFolders la lista di subFolder che la Folder contiene.
+     * @param documents la lista di documenti che la Folder contiene.
+     */
     private Folder(final String dirName,
                    final List<Folder> subFolders,
                    final List<Document> documents) {
@@ -20,15 +26,30 @@ public class Folder {
         this.documents = documents;
         this.dirName = dirName;
     }
-    
+
+    /**
+     * Metodo getter per il campo subFolders.
+     * @return la lista di subFolders.
+     */
     public List<Folder> getSubFolders() {
         return this.subFolders;
     }
-    
+
+    /**
+     * Metodo getter per il campo documents.
+     * @return la lista di documents.
+     */
     public List<Document> getDocuments() {
         return this.documents;
     }
-    
+
+    /**
+     * Metodo builder che crea un'istanza di Folder.
+     * @param dir la directory.
+     * @param depth la profondità corrente.
+     * @return un'istanza di Folder corrispondente alla directory.
+     * @throws IOException se il File tira una IOException.
+     */
     public static Folder fromDirectory(final File dir, int depth) throws IOException {
         List<Document> documents = new LinkedList<>();
         List<Folder> subFolders = new LinkedList<>();

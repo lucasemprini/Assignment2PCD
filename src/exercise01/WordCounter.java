@@ -15,10 +15,21 @@ public class WordCounter {
 
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
 
+    /**
+     * Metodo che ritorna un array di parole a partire da una line di un Document.
+     * @param line la riga di un documento.
+     * @return la riga splittata in parole.
+     */
     private String[] wordsIn(String line) {
         return line.trim().split("(\\s|\\p{Punct})+");
     }
-    
+
+    /**
+     * Metodo che conta le occorrenze all'interno di un Document.
+     * @param document il documento in cui cercare.
+     * @param regexp la regular expression da cercare.
+     * @return una mappa che associa al nome del documento il numero di occorrenze trovate.
+     */
     public Map<String, Long> occurrencesCount(Document document, Pattern regexp) {
         long count = 0;
         Map<String, Long> map = new HashMap<>();
@@ -49,6 +60,14 @@ public class WordCounter {
         return count;
     }
     */
+
+    /**
+     * Metodo che triggera l'Executor.
+     * @param folder la cartella su cui cercare.
+     * @param regexp la regular expression da cercare.
+     * @param depth la max depth oltre cui non andare.
+     * @return la mappa dei documenti trovati associati al numero di occorrenze.
+     */
     public Map<String, Long> countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
         return forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
     }
