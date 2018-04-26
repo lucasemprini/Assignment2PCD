@@ -73,7 +73,7 @@ public class ViewController {
     private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         final List<Pair<String, Long>> list = new ArrayList<>();
         final long startTime = System.currentTimeMillis();
-        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile("[0-9]+"), depth);
+        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile("[n, i][a-z]*"), depth);
         for(String s : filesMap.keySet()) {
             list.add(new Pair<>(s, filesMap.get(s)));
         }
