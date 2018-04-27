@@ -146,7 +146,7 @@ public class ViewController {
     private void setListView(final List<Pair<String, Long>> list) {
 
         this.filesListView.setVisible(!list.isEmpty());
-        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ""));
+        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
 
         final ObservableList<Pair<String, Long>> obs = new ObservableListWrapper<>(list);
         this.filesListView.setItems(obs);
@@ -160,7 +160,7 @@ public class ViewController {
                     setStyle("");
                 } else {
                     setText(entry.getKey() + " :             " + entry.getValue()
-                            + (entry.getValue() == 1 ? " occurrence " : " occurrences ") +" found");
+                            + (entry.getValue() == 1 ? " occurrence " : " occurrences ") + "found");
                 }
             }
         });
