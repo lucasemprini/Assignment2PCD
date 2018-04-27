@@ -13,12 +13,16 @@ public class Folder {
     private final List<Document> documents;
     private String dirName;
     
-    private Folder(final String dirName,
-                   final List<Folder> subFolders,
-                   final List<Document> documents) {
+    private Folder(String dirName,
+                   List<Folder> subFolders,
+                   List<Document> documents) {
         this.subFolders = subFolders;
         this.documents = documents;
         this.dirName = dirName;
+    }
+
+    private static boolean checkDirAndSub(File dir) {
+        return !(dir == null || dir.listFiles() == null);
     }
     
     public List<Folder> getSubFolders() {
@@ -29,18 +33,22 @@ public class Folder {
         return this.documents;
     }
     
-    public static Folder fromDirectory(final File dir, int depth) throws IOException {
+    public static Folder fromDirectory(File dir, int depth) throws IOException {
         List<Document> documents = new LinkedList<>();
         List<Folder> subFolders = new LinkedList<>();
 
-        for (File entry : Objects.requireNonNull(dir.listFiles())) {
-            if (entry.isDirectory() && depth >= 0) {
-                subFolders.add(Folder.fromDirectory(entry, depth-1));
-            } else if (StringUtilities.isFileTextual(entry.getName())){
-                documents.add(Document.fromFile(entry));
+        if(checkDirAndSub(dir)) {
+            for (File entry : Objects.requireNonNull(dir.listFiles())) {
+                if (entry.isDirectory() && depth >= 0) {
+                    subFolders.add(Folder.fromDirectory(entry, depth-1));
+                } else if (StringUtilities.isFileTextual(entry.getName())){
+                    documents.add(Document.fromFile(entry));
+                }
             }
+            return new Folder(dir.getName(), subFolders, documents);
+        } else {
+            throw new IOException();
         }
-        return new Folder(dir.getName(), subFolders, documents);
     }
 
     @Override
