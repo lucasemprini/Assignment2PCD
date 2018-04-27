@@ -3,6 +3,8 @@ package view;
 import com.sun.javafx.collections.ObservableListWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
+import exercise02.VerticleWordCounter;
+import io.vertx.core.Future;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -132,6 +134,23 @@ public class ViewController {
         for(String s : filesMap.keySet()) {
             list.add(new Pair<>(s, filesMap.get(s)));
         }
+
+        System.out.println(this.filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
+
+        this.setListView(list);
+        this.setLabels(list);
+    }
+
+    private void callVerticles(final Folder folder, final VerticleWordCounter wordCounter, final int depth) {
+        final List<Pair<String,Long>> list = new ArrayList<>();
+
+        final long startTime = System.currentTimeMillis();
+        Future<Map<String, Long>> fut = Future.future();
+        fut.setHandler(map -> {
+           map.result().forEach(this.filesMap::putIfAbsent);
+        });
+        wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth, fut);
+        final long stopTime = System.currentTimeMillis();
 
         System.out.println(this.filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
 
