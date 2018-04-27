@@ -152,7 +152,7 @@ public class ViewController {
         System.out.println(filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
     }
 
-    /*
+
     private void callVerticles(final Folder folder, final VerticleWordCounter wordCounter, final int depth) {
         final List<Pair<String,Long>> list = new ArrayList<>();
 
@@ -169,7 +169,7 @@ public class ViewController {
         this.setListView(list);
         this.setLabels(list);
     }
-    */
+
 
     /**
      * Metodo che setta la ListView con i valori trovati.
