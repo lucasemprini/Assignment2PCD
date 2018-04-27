@@ -5,6 +5,9 @@ import io.vertx.core.Vertx;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PROVE CON VERTX
+ */
 public class DummyFileReader {
 
     private Vertx vertx = Vertx.vertx();
