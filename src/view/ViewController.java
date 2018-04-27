@@ -3,6 +3,7 @@ package view;
 import com.sun.javafx.collections.ObservableListWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.util.Pair;
@@ -27,6 +28,7 @@ public class ViewController {
     public Label meanNumberOfMatchesLabel;
     public ListView<Pair<String, Long>> filesListView;
     public Label listPresentation;
+    public ComboBox<Integer> comboExercise;
 
     private static final String WRONG_INPUT = "WRONG INPUT!";
     private static final String NO_FILES = " NO FILES FOUND!";
@@ -40,6 +42,7 @@ public class ViewController {
     private Map<String, Long> filesMap;
 
     public void initialize() {
+        this.setComboBox();
         this.addSearchListener();
     }
 
@@ -49,6 +52,16 @@ public class ViewController {
     private void showAlert() {
         final Alert alert = new Alert(Alert.AlertType.ERROR, WRONG_INPUT, ButtonType.CLOSE);
         alert.showAndWait();
+    }
+
+    /**
+     * Metodo per settare la ComboBox.
+     */
+    private void setComboBox() {
+        ObservableList<Integer> options =
+                FXCollections.observableArrayList(1, 2, 3);
+
+        this.comboExercise.setItems(options);
     }
 
     /**
@@ -68,6 +81,14 @@ public class ViewController {
     }
 
     /**
+     * Metodo che ritorna il valore selezionato nella ComboBox.
+     * @return il valore della ComboBox che indica l'esercizio da lanciare.
+     */
+    private int getValueFromComboBox() {
+        return this.comboExercise.getValue() == null ? 0 : this.comboExercise.getValue();
+    }
+
+    /**
      * Metodo che setta il Listener al Search Button.
      */
     private void addSearchListener() {
@@ -76,10 +97,16 @@ public class ViewController {
             try {
                 final String path = this.getPathFromField();
                 final int depth = this.getDepthFromSpinner();
-                File file = new File(path);
-                if(file.isDirectory() && depth >= 0) {
+                final int exerciseToRun = this.getValueFromComboBox();
+                final File file = new File(path);
+
+                if(file.isDirectory() && depth >= 0 && exerciseToRun > 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
-                    this.callTasks(folder, wordCounter, depth);
+                    switch (exerciseToRun) {
+                        case 1 : this.callTasks(folder, wordCounter, depth);
+                        case 2 : break; //TODO
+                        case 3 : break; //TODO
+                    }
                 } else {
                     this.showAlert();
                 }
