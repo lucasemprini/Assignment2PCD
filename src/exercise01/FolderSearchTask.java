@@ -51,6 +51,7 @@ public class FolderSearchTask extends RecursiveTask<Map<String, Long>> {
     private void searchAmongDocs(List<RecursiveTask<Map<String, Long>>> forks) {
         for (Document document : folder.getDocuments()) {
             DocumentSearchTask task = new DocumentSearchTask(wc, document, searchedWord);
+
             forks.add(task);
             task.fork();
         }
