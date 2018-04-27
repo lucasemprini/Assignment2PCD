@@ -1,24 +1,25 @@
 package exercise01.events;
 
-import exercise01.Document;
+import javafx.util.Pair;
 
 public class FileFoundEventImpl implements FileFoundEvent {
 
-    private Document doc;
-    private int totFilesFound;
+    private Pair<String, Long> doc;
+    private Pair<Integer, Integer> totFilesFound;
 
-    public FileFoundEventImpl(final Document doc, final int totFilesFound) {
+    public FileFoundEventImpl(final Pair<String, Long> doc,
+                              final Pair<Integer, Integer> totFilesFound) {
         this.doc = doc;
         this.totFilesFound = totFilesFound;
     }
 
     @Override
-    public Document getFileFound() {
+    public Pair<String, Long> getFileFoundAndOccurences() {
         return doc;
     }
 
     @Override
-    public int getTotFilesFound() {
+    public Pair<Integer, Integer> getTotFilesFound() {
         return this.totFilesFound;
     }
 }

@@ -3,6 +3,7 @@ package exercise01;
 import exercise01.events.FileEventListener;
 import exercise01.events.FileFoundEvent;
 import exercise01.events.FileFoundEventImpl;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +17,8 @@ public class WordCounter {
 
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-    private final List<FileEventListener> listenersList = new ArrayList<>();
-    private int documentsFound = 0;
+    private List<FileEventListener> listenersList = new ArrayList<>();
+    private Pair<Integer, Integer> documentsFound = new Pair<>(0, 0);
 
     /**
      * Metodo che ritorna un array di parole a partire da una line di un Document.
@@ -31,8 +32,8 @@ public class WordCounter {
     /**
      * Crea un nuovo Event e lo notifica alla lista dei listeners.
      */
-    private void notifyFileFoundEvent(Document document) {
-        final FileFoundEvent event = new FileFoundEventImpl(document, documentsFound);
+    private void notifyFileFoundEvent(Pair<String, Long> doc) {
+        FileFoundEvent event = new FileFoundEventImpl(doc, documentsFound);
         for(FileEventListener l : this.listenersList) {
             l.newFileFound(event);
         }
@@ -42,7 +43,7 @@ public class WordCounter {
      * Aggiunge un nuovo Listener per l'aggiornamento del numero di file trovati.
      * @param l il Listener da aggiungere.
      */
-    public void addListener(final FileEventListener l) {
+    public void addListener(FileEventListener l) {
         this.listenersList.add(l);
     }
 
@@ -54,7 +55,6 @@ public class WordCounter {
      */
     public Map<String, Long> occurrencesCount(Document document, Pattern regexp) {
         long count = 0;
-        this.documentsFound++;
         Map<String, Long> map = new HashMap<>();
         for (String line : document.getLines()) {
             for (String word : wordsIn(line)) {
@@ -64,6 +64,12 @@ public class WordCounter {
                 }
             }
         }
+
+        this.documentsFound = new Pair<>(this.documentsFound.getKey() + 1,
+                (count > 0 ? this.documentsFound.getValue() + 1 : this.documentsFound.getValue()));
+
+        this.notifyFileFoundEvent(new Pair<>(document.toString(), count));
+
         map.put(document.toString(), count);
         return map;
     }
@@ -93,6 +99,10 @@ public class WordCounter {
      */
     public Map<String, Long> countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
         return forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
+    }
+
+    public void reset() {
+        this.listenersList.clear();
     }
 
 }

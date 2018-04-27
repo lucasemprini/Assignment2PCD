@@ -1,18 +1,19 @@
 package exercise01.events;
 
 import exercise01.Document;
+import javafx.util.Pair;
 
 public interface FileFoundEvent {
 
     /**
      * Metodo che ritorna il file trovato.
-     * @return la il Document trovato.
+     * @return la il Document trovato e il numero di occorrenze.
      */
-    public Document getFileFound();
+    public Pair<String, Long> getFileFoundAndOccurences();
 
     /**
      * Metodo che ritorna il numero di file trovati al momento dell'evento.
      * @return il numero di file trovati al momento.
      */
-    public int getTotFilesFound();
+    public Pair<Integer, Integer> getTotFilesFound();
 }
