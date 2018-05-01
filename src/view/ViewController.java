@@ -145,6 +145,7 @@ public class ViewController {
                             break;
                         case 3:
                             break; //TODO
+                        default: showAlert();
                     }
                 } else {
                     this.showAlert();
