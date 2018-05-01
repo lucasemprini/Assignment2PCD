@@ -1,5 +1,11 @@
 package exercise01;
 
+import exercise01.events.FileEventListener;
+import exercise01.events.FileFoundEvent;
+import exercise01.events.FileFoundEventImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;
@@ -22,7 +28,7 @@ public class DocumentSearchTask extends RecursiveTask<Map<String, Long>> {
         this.searchedWord = searchedWord;
         this.wc = wc;
     }
-    
+
     @Override
     protected Map<String, Long> compute() {
         return wc.occurrencesCount(document, searchedWord);

@@ -1,3 +1,4 @@
+import exercise01.WordCounter;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         final FXMLLoader loader = initGui(primaryStage);
         final ViewController initialWindow = loader.getController();
+        initialWindow.setEvents(new WordCounter());
         primaryStage.show();
     }
 

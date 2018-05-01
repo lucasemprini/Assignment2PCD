@@ -4,21 +4,20 @@ import com.sun.javafx.collections.ObservableListWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
 import exercise02.VerticleWordCounter;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.util.Pair;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import utility.MathUtility;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class ViewController {
     public TextField pathField;
@@ -33,6 +32,7 @@ public class ViewController {
     public Label listPresentation;
     public ComboBox<Integer> comboExercise;
 
+
     private static final String WRONG_INPUT = "WRONG INPUT!";
     private static final String NO_FILES = " NO FILES FOUND!";
     private static final String LIST_PRESENTATION = "List of matching files:";
@@ -42,11 +42,39 @@ public class ViewController {
      */
     private static final String REGEXP_TO_MATCH = "[n, i][a-z]*";
 
-    private Map<String, Long> filesMap;
+    private List<Pair<String, Long>> list = new ArrayList<>();
+    private final ObservableList<Pair<String, Long>> obsForListView = new ObservableListWrapper<>(list);
+    private WordCounter wordCounter;
 
     public void initialize() {
+        pathField.setText("./src");
+        maxDepthSpinner.increment(4);
         this.setComboBox();
         this.addSearchListener();
+    }
+
+    public void setEvents(WordCounter wordCounter) {
+        this.wordCounter = wordCounter;
+        this.wordCounter.addListener(ev -> {
+
+
+            //TODO Migliorabile
+            if (getValueFromComboBox() == 1) {
+
+
+                Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
+                Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
+                synchronized (list) {
+                    this.list.add(fileAndOccurrences);
+
+                    Platform.runLater(() -> {
+                        this.setListView();
+                        this.setLabels(totFilesFound);
+                    });
+                }
+            }
+
+        });
     }
 
     /**
@@ -98,21 +126,25 @@ public class ViewController {
      * Metodo che setta il Listener al Search Button.
      */
     private void addSearchListener() {
+
         this.buttonSearch.setOnAction(e -> {
-            final WordCounter wordCounter = new WordCounter();
             try {
                 final String path = this.getPathFromField();
                 final int depth = this.getDepthFromSpinner();
                 final int exerciseToRun = this.getValueFromComboBox();
                 final File file = new File(path);
+                wordCounter.reset();
+                this.list.clear();
 
                 if (file.isDirectory() && depth >= 0 && exerciseToRun > 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
                     switch (exerciseToRun) {
                         case 1:
-                            this.callTasks(folder, wordCounter, depth);
+                            this.callTasks(folder, depth);
+                            break;
                         case 2:
                             this.callVerticles(folder, new VerticleWordCounter(wordCounter), depth);
+                            break;
                         case 3:
                             break; //TODO
                     }
@@ -128,62 +160,63 @@ public class ViewController {
     /**
      * Metodo che chiama il WordCounter e fa partire la ricerca.
      *
-     * @param folder      la Folder di partenza digitata in input.
-     * @param wordCounter l'istanza di WordCounter.
-     * @param depth       la Max depth.
+     * @param folder la Folder di partenza digitata in input.
+     * @param depth  la Max depth.
      */
-    private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
-        final List<Pair<String, Long>> list = new ArrayList<>();
+    private void callTasks(final Folder folder, final int depth) {
 
         final long startTime = System.currentTimeMillis();
-        this.filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
+        Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
 
-        for (String s : filesMap.keySet()) {
-            list.add(new Pair<>(s, filesMap.get(s)));
-        }
 
-        System.out.println(this.filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
-
-        this.setListView(list);
-        this.setLabels(list);
+        System.out.println(filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
     }
 
+
+    /**
+     * Metodo che lancia la ricerca sfruttando gli event loop di Vertx.
+     * @param folder
+     *  Directory di partenza
+     * @param wordCounter
+     *  Un wrapper di WordCounter che ne estende le funzionalità rendendolo un Verticle
+     * @param depth
+     *  Profondità da visitare
+     */
     private void callVerticles(final Folder folder, final VerticleWordCounter wordCounter, final int depth) {
-        final List<Pair<String, Long>> list = new ArrayList<>();
-        this.filesMap = new HashMap<>();
-        final long startTime = System.currentTimeMillis();
-        /*Future<Map<String, Long>> fut = Future.future();
-        fut.setHandler(map -> {
-           map.result().forEach(this.filesMap::putIfAbsent);
-        });*/
+        AtomicInteger fileWithMatching = new AtomicInteger();
+        AtomicInteger totFile = new AtomicInteger();
+
         wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH),
                 depth,
-                map -> {
-                    map.forEach((k,v) -> {
-                        System.out.println("Path: " + k + " / Value: " + v);
-                        this.filesMap.putIfAbsent(k, v);
-                    });
-                });
-        final long stopTime = System.currentTimeMillis();
+                map -> map.forEach((k, v) -> {
+                    synchronized (list) {
+                        this.list.add(new Pair<>(k, v));
+                        totFile.incrementAndGet();
+                        if (v > 0) {
+                            fileWithMatching.incrementAndGet();
+                        }
+
+                        Platform.runLater(() -> {
+                            this.setListView();
+                            this.setLabels(new Pair<>(totFile.intValue(), fileWithMatching.intValue()));
+                        });
+                    }
+                }));
 
 
-        this.setListView(list);
-        this.setLabels(list);
     }
+
 
     /**
      * Metodo che setta la ListView con i valori trovati.
-     *
-     * @param list la lista di coppie String-Long.
      */
-    private void setListView(final List<Pair<String, Long>> list) {
-
+    private void setListView() {
         this.filesListView.setVisible(!list.isEmpty());
-        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
+       this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
 
-        final ObservableList<Pair<String, Long>> obs = new ObservableListWrapper<>(list);
-        this.filesListView.setItems(obs);
+
+        this.filesListView.setItems(obsForListView);
         this.filesListView.setCellFactory(l -> new ListCell<Pair<String, Long>>() {
 
             @Override
@@ -203,17 +236,25 @@ public class ViewController {
     /**
      * Metodo che setta le due label.
      *
-     * @param list la lista di coppie String-Long.
+     * @param totAndMatching la coppia che rappresenta il numero totale di file trovati
+     *                       e il numero totale dei file con almeno un matching.
      */
-    private void setLabels(final List<Pair<String, Long>> list) {
-        final List<Pair<String, Long>> filesWithAtLeastOne = list.stream().filter(el -> el.getValue() > 0).collect(Collectors.toList());
-        final Double percentage = ((double) filesWithAtLeastOne.size() * 100) / (double) list.size();
+    private void setLabels(final Pair<Integer, Integer> totAndMatching) {
+        final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
         double totMatches = 0;
-        for (Pair<String, Long> p : filesWithAtLeastOne) {
-            totMatches += p.getValue();
+
+        //System.out.println("FILE TOTALI: " + totAndMatching.getKey() + " FILE CON UN MATCH: " + totAndMatching.getValue());
+        //System.out.println("List size: " + list.size());
+        synchronized (list) {
+            for (Pair<String, Long> el : list) {
+                totMatches += el.getValue();
+            }
+            final Double meanMatches = totMatches / (double) totAndMatching.getValue();
+            this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
+            this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
+
         }
-        final Double meanMatches = totMatches / (double) filesWithAtLeastOne.size();
-        this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
-        this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
     }
+
+
 }
