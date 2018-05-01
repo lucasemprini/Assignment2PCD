@@ -47,8 +47,6 @@ public class ViewController {
     private WordCounter wordCounter;
 
     public void initialize() {
-        pathField.setText("./src");
-        maxDepthSpinner.increment(4);
         this.setComboBox();
         this.addSearchListener();
     }
