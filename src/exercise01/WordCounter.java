@@ -102,7 +102,7 @@ public class WordCounter {
     }
 
     public void reset() {
-        this.listenersList.clear();
+        this.documentsFound = new Pair<>(0,0);
     }
 
 }

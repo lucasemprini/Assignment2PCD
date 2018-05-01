@@ -26,27 +26,27 @@ public class VerticleFolderSearchTask extends AbstractVerticle {
         this.fut = fut;
     }
 
+
+
     /**
      * Metodo che chiama i task sulle subfolders se presenti e se non si è raggiunta la MaxDepth.
      * @param hasNotReachedLimit true se posso cercare nelle subFolders, false altrimenti.
      */
     private void  searchAmongSubFolders(boolean hasNotReachedLimit) {
         if (hasNotReachedLimit) {
-            folder.getSubFolders().forEach(subFolder -> getVertx().deployVerticle(new VerticleFolderSearchTask(wc, subFolder, searchedWord, maxDepth, fut)));
+            folder.getSubFolders().forEach(subFolder -> getVertx().deployVerticle(new VerticleFolderSearchTask(wc, subFolder, searchedWord, maxDepth - 1, fut)));
         }
     }
 
 
     /**
-     * Metodo che chiamai task per cercare nei documenti.
+     * Metodo che chiama i task per cercare nei documenti.
      */
     private void searchAmongDocs() {
 
         folder.getDocuments().forEach(document -> {
             Future<Map<String, Long>> fut = Future.future();
-            fut.setHandler(map -> {
-                this.fut.onCompleted(map.result());
-            });
+            fut.setHandler(map -> this.fut.onCompleted(map.result()));
             getVertx().deployVerticle(new VerticleDocumentSearchTask(wc, document, searchedWord, fut));
         });
     }
@@ -55,7 +55,7 @@ public class VerticleFolderSearchTask extends AbstractVerticle {
 
     @Override
     public void start() {
-       this.searchAmongSubFolders(maxDepth > 0 && !folder.getSubFolders().isEmpty());
+       this.searchAmongSubFolders((maxDepth > 0 && !folder.getSubFolders().isEmpty()));
        this.searchAmongDocs();
     }
 }

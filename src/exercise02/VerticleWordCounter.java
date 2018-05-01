@@ -2,10 +2,8 @@ package exercise02;
 
 import exercise01.Folder;
 import exercise01.WordCounter;
-import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 
-import java.util.Map;
 import java.util.regex.Pattern;
 
 public class VerticleWordCounter{
@@ -18,10 +16,22 @@ public class VerticleWordCounter{
     }
 
 
-
+    /**
+     * Lancia la ricerca su una cartella.
+     * @param folder
+     *  Directory di riferimento
+     * @param regexp
+     *  Regular expression
+     * @param depth
+     *  Profondità
+     * @param future
+     * Operazione da passare alla future da scatenare al momento del completamento
+     */
     public void countOccurrencesInParallel(Folder folder, Pattern regexp, int depth, FutureOperation future) {
         Vertx vertx = Vertx.vertx();
 
         vertx.deployVerticle(new VerticleFolderSearchTask(this.wc, folder, regexp, depth, future));
     }
+
+
 }

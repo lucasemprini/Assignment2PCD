@@ -30,10 +30,6 @@ public class VerticleDocumentSearchTask extends AbstractVerticle {
 
     }
 
-
-
-
-
     @Override
     public void start() {
         Map<String, Long> app = wc.occurrencesCount(document, searchedWord);
