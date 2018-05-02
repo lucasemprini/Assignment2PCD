@@ -42,7 +42,7 @@ public class ViewController {
      */
     private static final String REGEXP_TO_MATCH = "[n, i][a-z]*";
 
-    private List<Pair<String, Long>> list = new ArrayList<>();
+    private final List<Pair<String, Long>> list = new ArrayList<>();
     private final ObservableList<Pair<String, Long>> obsForListView = new ObservableListWrapper<>(list);
     private WordCounter wordCounter;
 
