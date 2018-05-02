@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.util.Pair;
 import utility.MathUtility;
+import utility.StringUtilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -124,7 +125,6 @@ public class ViewController {
      * Metodo che setta il Listener al Search Button.
      */
     private void addSearchListener() {
-
         this.buttonSearch.setOnAction(e -> {
             try {
                 final String path = this.getPathFromField();
@@ -167,7 +167,6 @@ public class ViewController {
         final long startTime = System.currentTimeMillis();
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
-
 
         System.out.println(filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
     }
@@ -225,8 +224,7 @@ public class ViewController {
                     setText(null);
                     setStyle("");
                 } else {
-                    setText(entry.getKey() + " :             " + entry.getValue()
-                            + (entry.getValue() == 1 ? " occurrence " : " occurrences ") + "found");
+                    setText(StringUtilities.setEntryListView(entry));
                 }
             }
         });
@@ -242,8 +240,6 @@ public class ViewController {
         final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
         double totMatches = 0;
 
-        //System.out.println("FILE TOTALI: " + totAndMatching.getKey() + " FILE CON UN MATCH: " + totAndMatching.getValue());
-        //System.out.println("List size: " + list.size());
         synchronized (list) {
             for (Pair<String, Long> el : list) {
                 totMatches += el.getValue();

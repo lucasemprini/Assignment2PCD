@@ -1,5 +1,7 @@
 package utility;
 
+import javafx.util.Pair;
+
 public final class StringUtilities {
     private StringUtilities() {}
 
@@ -33,5 +35,15 @@ public final class StringUtilities {
         final String regex = "(/)|(\\\\)";
         final String toReturn = path.replaceAll(regex, "\n\\\\");
         return toReturn.substring(2);
+    }
+
+    /**
+     * Metodo utile per settare le stringhe da mostrare nelle entry della ListView.
+     * @param entry una entry della List.
+     * @return la stringa formattata.
+     */
+    public static String setEntryListView(final Pair<String, Long> entry) {
+        return entry.getKey() + " :             " + entry.getValue()
+                + (entry.getValue() == 1 ? " occurrence " : " occurrences ") + "found";
     }
 }
