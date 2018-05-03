@@ -19,6 +19,7 @@ public class WordCounter {
 
     private List<FileEventListener> listenersList = new ArrayList<>();
     private Pair<Integer, Integer> documentsFound = new Pair<>(0, 0);
+    private static final int SLEEP_DEBUG = 100;
 
     /**
      * Metodo che ritorna un array di parole a partire da una line di un Document.
@@ -71,6 +72,11 @@ public class WordCounter {
         this.notifyFileFoundEvent(new Pair<>(document.toString(), count));
 
         map.put(document.toString(), count);
+        try {
+            Thread.sleep(SLEEP_DEBUG);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return map;
     }
 

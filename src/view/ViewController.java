@@ -1,6 +1,7 @@
 package view;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import com.sun.org.apache.xerces.internal.util.SAXLocatorWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
 import exercise02.VerticleWordCounter;
@@ -55,7 +56,7 @@ public class ViewController {
     public void setEvents(WordCounter wordCounter) {
         this.wordCounter = wordCounter;
         this.wordCounter.addListener(ev -> {
-
+            System.out.println("Evento: " + ev.getFileFoundAndOccurences());
 
             //TODO Migliorabile
             if (getValueFromComboBox() == 1) {
@@ -211,7 +212,7 @@ public class ViewController {
      */
     private void setListView() {
         this.filesListView.setVisible(!list.isEmpty());
-       this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
+        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
 
 
         this.filesListView.setItems(obsForListView);
