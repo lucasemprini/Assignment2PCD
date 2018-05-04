@@ -1,10 +1,13 @@
 package view;
 
 import com.sun.javafx.collections.ObservableListWrapper;
-import com.sun.org.apache.xerces.internal.util.SAXLocatorWrapper;
 import exercise01.Folder;
 import exercise01.WordCounter;
 import exercise02.VerticleWordCounter;
+import exercise03.ReactiveWordCounter;
+import io.reactivex.*;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.ReplaySubject;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,8 +69,11 @@ public class ViewController {
                 Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
                 synchronized (list) {
                     this.list.add(fileAndOccurrences);
-
+                    System.out.println("Qui c'è un task event");
+                    System.out.flush();
                     Platform.runLater(() -> {
+                        System.out.println("Qui c'è un platform runLater");
+                        System.out.flush();
                         this.setListView();
                         this.setLabels(totFilesFound);
                     });
@@ -142,10 +148,11 @@ public class ViewController {
                             this.callTasks(folder, depth);
                             break;
                         case 2:
-                            this.callVerticles(folder, new VerticleWordCounter(wordCounter), depth);
+                            callVerticles(folder, new VerticleWordCounter(wordCounter), depth);
                             break;
                         case 3:
-                            break; //TODO
+                            callReactive(folder, new ReactiveWordCounter(wordCounter), depth);
+                            break;
                         default: showAlert();
                     }
                 } else {
@@ -168,6 +175,9 @@ public class ViewController {
         final long startTime = System.currentTimeMillis();
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
+
+        System.out.println("Qui c'è un task event");
+        System.out.flush();
 
         System.out.println(filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
     }
@@ -195,7 +205,8 @@ public class ViewController {
                         if (v > 0) {
                             fileWithMatching.incrementAndGet();
                         }
-
+                        System.out.println("Qui c'è un verticle event");
+                        System.out.flush();
                         Platform.runLater(() -> {
                             this.setListView();
                             this.setLabels(new Pair<>(totFile.intValue(), fileWithMatching.intValue()));
@@ -238,6 +249,8 @@ public class ViewController {
      *                       e il numero totale dei file con almeno un matching.
      */
     private void setLabels(final Pair<Integer, Integer> totAndMatching) {
+        System.out.println("Qui c'è una setLabels");
+        System.out.flush();
         final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
         double totMatches = 0;
 
@@ -250,6 +263,54 @@ public class ViewController {
             this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
 
         }
+    }
+
+
+
+    private void callReactive(final Folder folder, final ReactiveWordCounter wordCounter, final int depth) {
+        AtomicInteger fileWithMatching = new AtomicInteger();
+        AtomicInteger totFile = new AtomicInteger();
+
+        final Observer<Map<String, Long>> observer = new Observer<Map<String, Long>>() {
+            @Override
+            public void onSubscribe(Disposable disposable) {
+                //Nothing
+            }
+
+            @Override
+            public void onNext(Map<String, Long> map) {
+                map.forEach((k,v) -> {
+                    synchronized (list) {
+                        list.add(new Pair<>(k, v));
+                        totFile.incrementAndGet();
+                        if (v > 0) {
+                            fileWithMatching.incrementAndGet();
+                        }
+                        System.out.println("Qui c'è un reactive event");
+                        System.out.flush();
+                        Platform.runLater(() -> {
+                            setListView();
+                            setLabels(new Pair<>(totFile.intValue(), fileWithMatching.intValue()));
+                        });
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println("Some problems..");
+            }
+
+            @Override
+            public void onComplete() {
+                System.out.println("Finish of reactive part");
+            }
+        };
+
+        wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH),
+                depth, observer );
+
+
     }
 
 
