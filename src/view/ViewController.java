@@ -48,25 +48,11 @@ public class ViewController {
 
     private final List<Pair<String, Long>> list = new ArrayList<>();
     private final ObservableList<Pair<String, Long>> obsForListView = new ObservableListWrapper<>(list);
-    private WordCounter wordCounter = new WordCounter();
 
     public void initialize() {
         this.setComboBox();
-        this.setEvents();
         this.configureListView();
         this.addSearchListener();
-    }
-
-    /**
-     * Metodo utile all'esercizio 1: setta gli eventi del wordCounter.
-     */
-    private void setEvents() {
-        this.wordCounter.addListener(ev -> {
-            Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
-            Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
-            this.updateGUI(totFilesFound, fileAndOccurrences, 1);
-        });
-
     }
 
     /**
@@ -100,7 +86,6 @@ public class ViewController {
      */
     private void configureListView() {
         this.filesListView.setCellFactory(l -> new ListCell<Pair<String, Long>>() {
-
             @Override
             protected void updateItem(Pair<String, Long> entry, boolean empty) {
                 super.updateItem(entry, empty);
@@ -201,14 +186,13 @@ public class ViewController {
                 final int depth = this.getDepthFromSpinner();
                 final int exerciseToRun = this.getValueFromComboBox();
                 final File file = new File(path);
-                wordCounter.reset();
                 this.list.clear();
 
                 if (file.isDirectory() && depth >= 0 && exerciseToRun > 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
                     switch (exerciseToRun) {
                         case 1:
-                            this.callTasks(folder, depth);
+                            this.callTasks(folder, new WordCounter(), depth);
                             break;
                         case 2:
                             callVerticles(folder, new VerticleWordCounter(new WordCounter()), depth);
@@ -228,12 +212,25 @@ public class ViewController {
     }
 
     /**
+     * Metodo utile all'esercizio 1: setta gli eventi del wordCounter.
+     */
+    private void setEvents(WordCounter wordCounter) {
+        wordCounter.addListener(ev -> {
+            Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
+            Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
+            this.updateGUI(totFilesFound, fileAndOccurrences, 1);
+        });
+
+    }
+
+    /**
      * Metodo che chiama il WordCounter e fa partire la ricerca.
      *
      * @param folder la Folder di partenza digitata in input.
      * @param depth  la Max depth.
      */
-    private void callTasks(final Folder folder, final int depth) {
+    private void callTasks(final Folder folder, WordCounter wordCounter, final int depth) {
+        this.setEvents(wordCounter);
         final long startTime = System.currentTimeMillis();
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
