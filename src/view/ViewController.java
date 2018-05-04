@@ -62,7 +62,6 @@ public class ViewController {
      */
     private void setEvents() {
         this.wordCounter.addListener(ev -> {
-            System.out.println("Evento: " + ev.getFileFoundAndOccurences());
             Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
             Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
             this.updateGUI(totFilesFound, fileAndOccurrences, 1);
@@ -81,9 +80,9 @@ public class ViewController {
         synchronized (list) {
             this.list.add(fileAndOccurrences);
             switch (debug) {
-                case 1 : System.out.println("Qui c'è un Task event");
-                case 2 : System.out.println("Qui c'è un Verticle event");
-                case 3 : System.out.println("Qui c'è un Reactive event");
+                case 1 : System.out.println("Qui c'è un Task event"); break;
+                case 2 : System.out.println("Qui c'è un Verticle event"); break;
+                case 3 : System.out.println("Qui c'è un Reactive event"); break;
             }
 
             System.out.flush();
@@ -93,6 +92,57 @@ public class ViewController {
                 this.setListView();
                 this.setLabels(totFilesFound);
             });
+        }
+    }
+    /**
+     * Metodo da chiamare UNA volta alla creazione della GUI:
+     * setta la CellFactory della ListView.
+     */
+    private void configureListView() {
+        this.filesListView.setCellFactory(l -> new ListCell<Pair<String, Long>>() {
+
+            @Override
+            protected void updateItem(Pair<String, Long> entry, boolean empty) {
+                super.updateItem(entry, empty);
+                if (empty) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(StringUtilities.setEntryListView(entry));
+                }
+            }
+        });
+    }
+
+    /**
+     * Metodo che setta la ListView con i valori trovati.
+     */
+    private void setListView() {
+        this.filesListView.setVisible(!list.isEmpty());
+        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
+        this.filesListView.setItems(obsForListView);
+    }
+
+    /**
+     * Metodo che setta le due label.
+     *
+     * @param totAndMatching la coppia che rappresenta il numero totale di file trovati
+     *                       e il numero totale dei file con almeno un matching.
+     */
+    private void setLabels(final Pair<Integer, Integer> totAndMatching) {
+        System.out.println("Qui c'è una setLabels");
+        System.out.flush();
+        final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
+        double totMatches = 0;
+
+        synchronized (list) {
+            for (Pair<String, Long> el : list) {
+                totMatches += el.getValue();
+            }
+            final Double meanMatches = totMatches / (double) totAndMatching.getValue();
+            this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
+            this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
+
         }
     }
 
@@ -224,55 +274,6 @@ public class ViewController {
 
 
     }
-
-    private void configureListView() {
-        this.filesListView.setCellFactory(l -> new ListCell<Pair<String, Long>>() {
-
-            @Override
-            protected void updateItem(Pair<String, Long> entry, boolean empty) {
-                super.updateItem(entry, empty);
-                if (empty) {
-                    setText(null);
-                    setStyle("");
-                } else {
-                    setText(StringUtilities.setEntryListView(entry));
-                }
-            }
-        });
-    }
-
-    /**
-     * Metodo che setta la ListView con i valori trovati.
-     */
-    private void setListView() {
-        this.filesListView.setVisible(!list.isEmpty());
-        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
-        this.filesListView.setItems(obsForListView);
-    }
-
-    /**
-     * Metodo che setta le due label.
-     *
-     * @param totAndMatching la coppia che rappresenta il numero totale di file trovati
-     *                       e il numero totale dei file con almeno un matching.
-     */
-    private void setLabels(final Pair<Integer, Integer> totAndMatching) {
-        System.out.println("Qui c'è una setLabels");
-        System.out.flush();
-        final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
-        double totMatches = 0;
-
-        synchronized (list) {
-            for (Pair<String, Long> el : list) {
-                totMatches += el.getValue();
-            }
-            final Double meanMatches = totMatches / (double) totAndMatching.getValue();
-            this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
-            this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
-
-        }
-    }
-
 
 
     private void callReactive(final Folder folder, final ReactiveWordCounter wordCounter, final int depth) {
