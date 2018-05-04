@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="io.vertx:vertx-core:3.5.1" level="project" />
+    <orderEntry type="library" name="rxjava-2.1.6" level="project" />
   </component>
 </module>

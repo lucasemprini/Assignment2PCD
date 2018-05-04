@@ -22,7 +22,6 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         final FXMLLoader loader = initGui(primaryStage);
         final ViewController initialWindow = loader.getController();
-        initialWindow.setEvents(new WordCounter());
         primaryStage.show();
     }
 

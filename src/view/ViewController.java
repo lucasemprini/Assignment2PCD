@@ -7,7 +7,6 @@ import exercise02.VerticleWordCounter;
 import exercise03.ReactiveWordCounter;
 import io.reactivex.*;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.subjects.ReplaySubject;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,38 +48,52 @@ public class ViewController {
 
     private final List<Pair<String, Long>> list = new ArrayList<>();
     private final ObservableList<Pair<String, Long>> obsForListView = new ObservableListWrapper<>(list);
-    private WordCounter wordCounter;
+    private WordCounter wordCounter = new WordCounter();
 
     public void initialize() {
         this.setComboBox();
+        this.setEvents();
+        this.configureListView();
         this.addSearchListener();
     }
 
-    public void setEvents(WordCounter wordCounter) {
-        this.wordCounter = wordCounter;
+    /**
+     * Metodo utile all'esercizio 1: setta gli eventi del wordCounter.
+     */
+    private void setEvents() {
         this.wordCounter.addListener(ev -> {
             System.out.println("Evento: " + ev.getFileFoundAndOccurences());
+            Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
+            Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
+            this.updateGUI(totFilesFound, fileAndOccurrences, 1);
+        });
 
-            //TODO Migliorabile
-            if (getValueFromComboBox() == 1) {
+    }
 
-
-                Pair<Integer, Integer> totFilesFound = ev.getTotFilesFound();
-                Pair<String, Long> fileAndOccurrences = ev.getFileFoundAndOccurences();
-                synchronized (list) {
-                    this.list.add(fileAndOccurrences);
-                    System.out.println("Qui c'è un task event");
-                    System.out.flush();
-                    Platform.runLater(() -> {
-                        System.out.println("Qui c'è un platform runLater");
-                        System.out.flush();
-                        this.setListView();
-                        this.setLabels(totFilesFound);
-                    });
-                }
+    /**
+     * Metodo che aggiunge gli elementi correttamente alla lista, chiama i metodi di aggiornamento della GUI
+     * e utilizza lo standard output ai fini di debug.
+     * @param totFilesFound la coppia da aggiungere alla Lista.
+     * @param fileAndOccurrences la coppia che serve per aggiornare le Label.
+     * @param debug variabile che determina in quale esercizio ci si trova.
+     */
+    private void updateGUI(Pair<Integer, Integer> totFilesFound, Pair<String, Long> fileAndOccurrences, int debug) {
+        synchronized (list) {
+            this.list.add(fileAndOccurrences);
+            switch (debug) {
+                case 1 : System.out.println("Qui c'è un Task event");
+                case 2 : System.out.println("Qui c'è un Verticle event");
+                case 3 : System.out.println("Qui c'è un Reactive event");
             }
 
-        });
+            System.out.flush();
+            Platform.runLater(() -> {
+                System.out.println("Qui c'è un platform runLater");
+                System.out.flush();
+                this.setListView();
+                this.setLabels(totFilesFound);
+            });
+        }
     }
 
     /**
@@ -148,10 +161,10 @@ public class ViewController {
                             this.callTasks(folder, depth);
                             break;
                         case 2:
-                            callVerticles(folder, new VerticleWordCounter(wordCounter), depth);
+                            callVerticles(folder, new VerticleWordCounter(new WordCounter()), depth);
                             break;
                         case 3:
-                            callReactive(folder, new ReactiveWordCounter(wordCounter), depth);
+                            callReactive(folder, new ReactiveWordCounter(new WordCounter()), depth);
                             break;
                         default: showAlert();
                     }
@@ -171,7 +184,6 @@ public class ViewController {
      * @param depth  la Max depth.
      */
     private void callTasks(final Folder folder, final int depth) {
-
         final long startTime = System.currentTimeMillis();
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
@@ -200,33 +212,20 @@ public class ViewController {
                 depth,
                 map -> map.forEach((k, v) -> {
                     synchronized (list) {
-                        this.list.add(new Pair<>(k, v));
                         totFile.incrementAndGet();
                         if (v > 0) {
                             fileWithMatching.incrementAndGet();
                         }
-                        System.out.println("Qui c'è un verticle event");
-                        System.out.flush();
-                        Platform.runLater(() -> {
-                            this.setListView();
-                            this.setLabels(new Pair<>(totFile.intValue(), fileWithMatching.intValue()));
-                        });
+                        this.updateGUI(new Pair<>(totFile.intValue(),
+                                fileWithMatching.intValue()), new Pair<>(k, v),
+                                2);
                     }
                 }));
 
 
     }
 
-
-    /**
-     * Metodo che setta la ListView con i valori trovati.
-     */
-    private void setListView() {
-        this.filesListView.setVisible(!list.isEmpty());
-        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
-
-
-        this.filesListView.setItems(obsForListView);
+    private void configureListView() {
         this.filesListView.setCellFactory(l -> new ListCell<Pair<String, Long>>() {
 
             @Override
@@ -240,6 +239,15 @@ public class ViewController {
                 }
             }
         });
+    }
+
+    /**
+     * Metodo che setta la ListView con i valori trovati.
+     */
+    private void setListView() {
+        this.filesListView.setVisible(!list.isEmpty());
+        this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
+        this.filesListView.setItems(obsForListView);
     }
 
     /**
@@ -281,17 +289,14 @@ public class ViewController {
             public void onNext(Map<String, Long> map) {
                 map.forEach((k,v) -> {
                     synchronized (list) {
-                        list.add(new Pair<>(k, v));
+
                         totFile.incrementAndGet();
                         if (v > 0) {
                             fileWithMatching.incrementAndGet();
                         }
-                        System.out.println("Qui c'è un reactive event");
-                        System.out.flush();
-                        Platform.runLater(() -> {
-                            setListView();
-                            setLabels(new Pair<>(totFile.intValue(), fileWithMatching.intValue()));
-                        });
+                        updateGUI(new Pair<>(totFile.intValue(),
+                                fileWithMatching.intValue()), new Pair<>(k, v),
+                                3);
                     }
                 });
             }
@@ -309,7 +314,6 @@ public class ViewController {
 
         wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH),
                 depth, observer );
-
 
     }
 
