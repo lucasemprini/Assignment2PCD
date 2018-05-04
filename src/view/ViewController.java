@@ -103,6 +103,8 @@ public class ViewController {
      * Metodo che setta la ListView con i valori trovati.
      */
     private void setListView() {
+        System.out.println("Qui c'è una setListView");
+        System.out.flush();
         this.filesListView.setVisible(!list.isEmpty());
         this.listPresentation.setText(LIST_PRESENTATION + (list.isEmpty() ? NO_FILES : ("   " + list.size())));
         this.filesListView.setItems(obsForListView);
@@ -235,10 +237,7 @@ public class ViewController {
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
         final long stopTime = System.currentTimeMillis();
 
-        System.out.println("Qui c'è un task event");
-        System.out.flush();
-
-        System.out.println(filesMap + " , fork / join search took " + (stopTime - startTime) + "ms");
+        System.out.println(filesMap.size() + " , fork / join search took " + (stopTime - startTime) + "ms");
     }
 
 
