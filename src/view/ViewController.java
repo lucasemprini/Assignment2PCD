@@ -74,14 +74,14 @@ public class ViewController {
             }
 
             System.out.flush();
-
+            Platform.runLater(() -> {
+                System.out.println("Qui c'è un platform runLater");
+                System.out.flush();
+                this.setListView();
+                this.setLabels(totFilesFound, totMatches);
+            });
         }
-        Platform.runLater(() -> {
-            System.out.println("Qui c'è un platform runLater");
-            System.out.flush();
-            this.setListView();
-            this.setLabels(totFilesFound, totMatches);
-        });
+
     }
     /**
      * Metodo da chiamare UNA volta alla creazione della GUI:
@@ -121,8 +121,9 @@ public class ViewController {
      * @param totMatches il numero totale di parole che corrispondono alla REGEXP.
      */
     private void setLabels(Pair<Integer, Integer> totAndMatching, int totMatches) {
-        System.out.println("Qui c'è una setLabels: totMatches = " + totMatches + "      "
-                            + "totAndMatching : " +totAndMatching.getKey() + " - " + totAndMatching.getValue());
+        System.out.println("Qui c'è una setLabels: totMatches = " + totMatches
+                + "      " + "totAndMatching : "
+                + totAndMatching.getKey() + " - " + totAndMatching.getValue());
         System.out.flush();
         final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
         final Double meanMatches = totMatches / (double) totAndMatching.getValue();
@@ -228,9 +229,10 @@ public class ViewController {
      * Metodo che chiama il WordCounter e fa partire la ricerca.
      *
      * @param folder la Folder di partenza digitata in input.
+     * @param wordCounter il WordCounter.
      * @param depth  la Max depth.
      */
-    private void callTasks(final Folder folder, WordCounter wordCounter, final int depth) {
+    private void callTasks(final Folder folder, final WordCounter wordCounter, final int depth) {
         this.setEvents(wordCounter);
         final long startTime = System.currentTimeMillis();
         Map<String, Long> filesMap = wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);

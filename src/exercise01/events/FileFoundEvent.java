@@ -9,11 +9,11 @@ public interface FileFoundEvent {
      * Metodo che ritorna il file trovato.
      * @return la il Document trovato e il numero di occorrenze.
      */
-    public Pair<String, Long> getFileFoundAndOccurences();
+    Pair<String, Long> getFileFoundAndOccurences();
 
     /**
      * Metodo che ritorna il numero di file trovati al momento dell'evento.
-     * @return il numero di file trovati al momento.
+     * @return il numero di file trovati al momento e il numero di file con almeno un match.
      */
-    public Pair<Integer, Integer> getTotFilesFound();
+    Pair<Integer, Integer> getTotFilesFound();
 }

@@ -17,8 +17,9 @@ public class WordCounter {
 
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-    private List<FileEventListener> listenersList = new ArrayList<>();
-    private Pair<Integer, Integer> documentsFound = new Pair<>(0, 0);
+    private final List<FileEventListener> listenersList = new ArrayList<>();
+    private int totDocumentsFound = 0;
+    private int documentsMatching = 0;
     private static final int SLEEP_DEBUG = 100;
 
     /**
@@ -34,7 +35,7 @@ public class WordCounter {
      * Crea un nuovo Event e lo notifica alla lista dei listeners.
      */
     private void notifyFileFoundEvent(Pair<String, Long> doc) {
-        FileFoundEvent event = new FileFoundEventImpl(doc, documentsFound);
+        FileFoundEvent event = new FileFoundEventImpl(doc, new Pair<>(totDocumentsFound, documentsMatching));
         for(FileEventListener l : this.listenersList) {
             l.newFileFound(event);
         }
@@ -66,10 +67,10 @@ public class WordCounter {
             }
         }
 
-        this.documentsFound = new Pair<>(this.documentsFound.getKey() + 1,
-                (count > 0 ? this.documentsFound.getValue() + 1 : this.documentsFound.getValue()));
-
-        this.notifyFileFoundEvent(new Pair<>(document.toString(), count));
+        this.totDocumentsFound++;
+        if(count > 0) {
+            this.documentsMatching++;
+        }
 
         map.put(document.toString(), count);
         try {
@@ -77,6 +78,9 @@ public class WordCounter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        this.notifyFileFoundEvent(new Pair<>(document.toString(), count));
+
         return map;
     }
 
@@ -106,9 +110,4 @@ public class WordCounter {
     public Map<String, Long> countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
         return forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
     }
-
-    public void reset() {
-        this.documentsFound = new Pair<>(0,0);
-    }
-
 }
