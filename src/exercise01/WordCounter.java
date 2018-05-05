@@ -84,30 +84,13 @@ public class WordCounter {
         return map;
     }
 
-    /*
-    public Long countOccurrencesOnSingleThread(final Folder folder, final String searchedWord, int depth) {
-        long count = 0;
-        if(depth > 1 && folder.getSubFolders() != null) {
-            for (Folder subFolder : folder.getSubFolders()) {
-                count = count + countOccurrencesOnSingleThread(subFolder, searchedWord, --depth);
-            }
-        } else {
-            for (Document document : folder.getDocuments()) {
-                count = count + occurrencesCount(document, searchedWord);
-            }
-        }
-        return count;
-    }
-    */
-
     /**
      * Metodo che triggera l'Executor.
      * @param folder la cartella su cui cercare.
      * @param regexp la regular expression da cercare.
      * @param depth la max depth oltre cui non andare.
-     * @return la mappa dei documenti trovati associati al numero di occorrenze.
      */
-    public Map<String, Long> countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
-        return forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
+    public void countOccurrencesInParallel(Folder folder, Pattern regexp, int depth) {
+        forkJoinPool.invoke(new FolderSearchTask(this, folder, regexp, depth));
     }
 }
