@@ -305,9 +305,7 @@ public class ViewController {
             }
         };
 
-        wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH),
-                depth, observer );
-
+        new Thread(() -> wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth, observer )).start();
     }
 
 
