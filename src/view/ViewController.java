@@ -36,6 +36,7 @@ public class ViewController {
     public Label listPresentation;
     public ComboBox<Integer> comboExercise;
 
+    private int totMatches = 0;
 
     private static final String WRONG_INPUT = "WRONG INPUT!";
     private static final String NO_FILES = " NO FILES FOUND!";
@@ -65,6 +66,7 @@ public class ViewController {
     private void updateGUI(Pair<Integer, Integer> totFilesFound, Pair<String, Long> fileAndOccurrences, int debug) {
         synchronized (list) {
             this.list.add(fileAndOccurrences);
+            this.totMatches += fileAndOccurrences.getValue();
             switch (debug) {
                 case 1 : System.out.println("Qui c'è un Task event"); break;
                 case 2 : System.out.println("Qui c'è un Verticle event"); break;
@@ -72,13 +74,14 @@ public class ViewController {
             }
 
             System.out.flush();
-            Platform.runLater(() -> {
-                System.out.println("Qui c'è un platform runLater");
-                System.out.flush();
-                this.setListView();
-                this.setLabels(totFilesFound);
-            });
+
         }
+        Platform.runLater(() -> {
+            System.out.println("Qui c'è un platform runLater");
+            System.out.flush();
+            this.setListView();
+            this.setLabels(totFilesFound, totMatches);
+        });
     }
     /**
      * Metodo da chiamare UNA volta alla creazione della GUI:
@@ -115,22 +118,17 @@ public class ViewController {
      *
      * @param totAndMatching la coppia che rappresenta il numero totale di file trovati
      *                       e il numero totale dei file con almeno un matching.
+     * @param totMatches il numero totale di parole che corrispondono alla REGEXP.
      */
-    private void setLabels(final Pair<Integer, Integer> totAndMatching) {
-        System.out.println("Qui c'è una setLabels");
+    private void setLabels(Pair<Integer, Integer> totAndMatching, int totMatches) {
+        System.out.println("Qui c'è una setLabels: totMatches = " + totMatches + "      "
+                            + "totAndMatching : " +totAndMatching.getKey() + " - " + totAndMatching.getValue());
         System.out.flush();
         final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
-        double totMatches = 0;
+        final Double meanMatches = totMatches / (double) totAndMatching.getValue();
 
-        synchronized (list) {
-            for (Pair<String, Long> el : list) {
-                totMatches += el.getValue();
-            }
-            final Double meanMatches = totMatches / (double) totAndMatching.getValue();
-            this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
-            this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
-
-        }
+        this.meanNumberOfMatchesLabel.setText(Double.toString(MathUtility.roundAvoid(meanMatches)));
+        this.filesPercentageLabel.setText(Double.toString(MathUtility.roundAvoid(percentage)) + " %");
     }
 
     /**
@@ -189,6 +187,7 @@ public class ViewController {
                 final int exerciseToRun = this.getValueFromComboBox();
                 final File file = new File(path);
                 this.list.clear();
+                this.totMatches = 0;
 
                 if (file.isDirectory() && depth >= 0 && exerciseToRun > 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
