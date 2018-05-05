@@ -241,7 +241,8 @@ public class ViewController {
             wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth);
             final long stopTime = System.currentTimeMillis();
 
-            System.out.println("Fork / join search took " + (stopTime - startTime) + "ms");
+            System.out.println("Fork / join search took " + (stopTime - startTime) + "ms. Slept "
+                    + WordCounter.SLEEP_DEBUG + " ms for each document found");
         }).start();
     }
 

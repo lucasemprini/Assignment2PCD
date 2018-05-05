@@ -20,6 +20,7 @@ public class WordCounter {
     private final List<FileEventListener> listenersList = new ArrayList<>();
     private int totDocumentsFound = 0;
     private int documentsMatching = 0;
+    public static final int SLEEP_DEBUG = 100;
 
     /**
      * Metodo che ritorna un array di parole a partire da una line di un Document.
@@ -56,7 +57,6 @@ public class WordCounter {
      */
     public Map<String, Long> occurrencesCount(Document document, Pattern regexp) {
         long count = 0;
-        this.totDocumentsFound++;
         Map<String, Long> map = new HashMap<>();
         for (String line : document.getLines()) {
             for (String word : wordsIn(line)) {
@@ -67,11 +67,17 @@ public class WordCounter {
             }
         }
 
+        this.totDocumentsFound++;
         if(count > 0) {
             this.documentsMatching++;
         }
-
         map.put(document.toString(), count);
+
+        try {
+            Thread.sleep(SLEEP_DEBUG);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.notifyFileFoundEvent(new Pair<>(document.toString(), count));
 
         return map;
