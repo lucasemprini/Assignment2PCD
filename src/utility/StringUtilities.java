@@ -43,7 +43,7 @@ public final class StringUtilities {
      * @return la stringa formattata.
      */
     public static String setEntryListView(final Pair<String, Long> entry) {
-        return entry.getKey() + " :             " + entry.getValue()
+        return entry.getKey() + " : \t\t" + entry.getValue()
                 + (entry.getValue() == 1 ? " occurrence " : " occurrences ") + "found";
     }
 }

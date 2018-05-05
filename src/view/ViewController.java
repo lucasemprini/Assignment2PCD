@@ -38,6 +38,12 @@ public class ViewController {
     private static final String WRONG_INPUT = "WRONG INPUT!";
     private static final String NO_FILES = " NO FILES FOUND!";
     private static final String LIST_PRESENTATION = "List of matching files:";
+    private static final String DEBUG_EVENT_PRE = "Found a ";
+    private static final String DEBUG_EVENT_POST = " event : list size = ";
+    private static final String DEBUG_TOTMATCHES = " tot. matches = ";
+    private static final String DEBUG_SETLISTVIEW = "Triggered method setListView : list size = ";
+    private static final String DEBUG_SETLABELS = "Triggered method setLabels : tot. files found = ";
+    private static final String DEBUG_SETLABELS_POST = " - tot. files with at least one match = ";
 
     /**
      * REGULAR EXPRESSION DA TROVARE.
@@ -64,13 +70,17 @@ public class ViewController {
                 this.filesListView.getItems().add(fileAndOccurrences);
                 this.totMatches += fileAndOccurrences.getValue();
                 switch (debug) {
-                    case 1 : System.out.println("Qui c'è un Task event : list size = " + this.filesListView.getItems().size() + " e totMatches = " + totMatches); break;
-                    case 2 : System.out.println("Qui c'è un Verticle event : list size = " + this.filesListView.getItems().size() + " e totMatches = " + totMatches); break;
-                    case 3 : System.out.println("Qui c'è un Reactive event : list size = " + this.filesListView.getItems().size() + " e totMatches = " + totMatches); break;
+                    case 1 : System.out.println(DEBUG_EVENT_PRE + "Task" + DEBUG_EVENT_POST
+                            + this.filesListView.getItems().size()
+                            + DEBUG_TOTMATCHES + totMatches); break;
+                    case 2 : System.out.println(DEBUG_EVENT_PRE + "Verticle" + DEBUG_EVENT_POST
+                            + this.filesListView.getItems().size()
+                            + DEBUG_TOTMATCHES + totMatches); break;
+                    case 3 : System.out.println(DEBUG_EVENT_PRE + "Reactive" + DEBUG_EVENT_POST
+                            + this.filesListView.getItems().size()
+                            + DEBUG_TOTMATCHES + totMatches); break;
                 }
 
-                System.out.flush();
-                System.out.println("Qui c'è un platform runLater");
                 System.out.flush();
                 this.setListView();
                 this.setLabels(totFilesFoundAndMatching, totMatches);
@@ -101,10 +111,11 @@ public class ViewController {
      * Metodo che setta la ListView con i valori trovati.
      */
     private void setListView() {
-        System.out.println("Qui c'è una setListView : listSize = " + this.filesListView.getItems().size());
+        System.out.println(DEBUG_SETLISTVIEW + this.filesListView.getItems().size());
         System.out.flush();
         this.filesListView.setVisible(!this.filesListView.getItems().isEmpty());
-        this.listPresentation.setText(LIST_PRESENTATION + (this.filesListView.getItems().isEmpty() ? NO_FILES : ("   " + this.filesListView.getItems().size())));
+        this.listPresentation.setText(LIST_PRESENTATION +
+                (this.filesListView.getItems().isEmpty() ? NO_FILES : ("\t" + this.filesListView.getItems().size())));
     }
 
     /**
@@ -115,9 +126,7 @@ public class ViewController {
      * @param totMatches il numero totale di parole che corrispondono alla REGEXP.
      */
     private void setLabels(Pair<Integer, Integer> totAndMatching, int totMatches) {
-        System.out.println("Qui c'è una setLabels: totMatches = " + totMatches
-                + "      " + "totAndMatching : "
-                + totAndMatching.getKey() + " - " + totAndMatching.getValue());
+        System.out.println(DEBUG_SETLABELS + totAndMatching.getKey() + DEBUG_SETLABELS_POST + totAndMatching.getValue());
         System.out.flush();
         final Double percentage = ((double) totAndMatching.getValue() * 100) / (double) totAndMatching.getKey();
         final Double meanMatches = totMatches / (double) totAndMatching.getValue();
@@ -183,7 +192,7 @@ public class ViewController {
                 final File file = new File(path);
                 this.filesListView.getItems().clear();
                 this.totMatches = 0;
-
+                this.setListView();
                 if (file.isDirectory() && depth >= 0 && exerciseToRun > 0) {
                     final Folder folder = Folder.fromDirectory(file, depth);
                     switch (exerciseToRun) {
