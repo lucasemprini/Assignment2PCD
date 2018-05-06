@@ -26,7 +26,7 @@ public class ReactiveWordCounter {
      * @param subscriber
      * Operazione da passare alla future da scatenare al momento del completamento
      */
-    public void countOccurrencesInParallel(Folder folder, Pattern regexp,
+    public void countOccurrencesReactively(Folder folder, Pattern regexp,
                                            int depth, Observer<Map<String, Long>> subscriber) {
         new ReactiveFolderSearch(wc, folder, regexp, depth, subscriber);
     }

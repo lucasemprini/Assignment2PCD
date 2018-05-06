@@ -27,10 +27,10 @@ public class VerticleWordCounter{
      * @param future
      * Operazione da passare alla future da scatenare al momento del completamento
      */
-    public void countOccurrencesInParallel(Folder folder, Pattern regexp, int depth, FutureOperation future) {
+    public void countOccurrencesInEventLoop(Folder folder, Pattern regexp, int depth, FutureOperation future) {
         Vertx vertx = Vertx.vertx();
 
-        vertx.deployVerticle(new VerticleFolderSearchTask(this.wc, folder, regexp, depth, future));
+        vertx.deployVerticle(new VerticleFolderSearch(this.wc, folder, regexp, depth, future));
     }
 
 

@@ -260,10 +260,10 @@ public class ViewController {
         AtomicInteger fileWithMatching = new AtomicInteger();
         AtomicInteger totFile = new AtomicInteger();
 
-        final long startTime = System.currentTimeMillis();
-        wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH),
+        wordCounter.countOccurrencesInEventLoop(folder, Pattern.compile(REGEXP_TO_MATCH),
                 depth,
                 map -> map.forEach((k, v) -> {
+
                     synchronized (filesListView.getItems()) {
                         totFile.incrementAndGet();
                         if (v > 0) {
@@ -275,9 +275,7 @@ public class ViewController {
                     }
                 }));
 
-        final long stopTime = System.currentTimeMillis();
-        System.out.println("Fork / join search took " + (stopTime - startTime) + "ms. Slept "
-                + WordCounter.SLEEP_DEBUG + " ms for each document found");
+
 
     }
 
@@ -321,7 +319,7 @@ public class ViewController {
 
         new Thread(() -> {
             final long startTime = System.currentTimeMillis();
-            wordCounter.countOccurrencesInParallel(folder, Pattern.compile(REGEXP_TO_MATCH), depth, observer );
+            wordCounter.countOccurrencesReactively(folder, Pattern.compile(REGEXP_TO_MATCH), depth, observer );
             final long stopTime = System.currentTimeMillis();
             System.out.println("Reactive search took " + (stopTime - startTime) + "ms. Slept "
                 + WordCounter.SLEEP_DEBUG + " ms for each document found");

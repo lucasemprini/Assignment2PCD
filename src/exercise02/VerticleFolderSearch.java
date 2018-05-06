@@ -8,7 +8,7 @@ import io.vertx.core.Future;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class VerticleFolderSearchTask extends AbstractVerticle {
+public class VerticleFolderSearch extends AbstractVerticle {
 
     private final Folder folder;
     private final Pattern searchedWord;
@@ -16,7 +16,7 @@ public class VerticleFolderSearchTask extends AbstractVerticle {
     private final int maxDepth;
     private final FutureOperation fut;
 
-    public VerticleFolderSearchTask(final WordCounter wc, final Folder folder, final Pattern regexp, final int maxDepth, final FutureOperation fut) {
+    public VerticleFolderSearch(final WordCounter wc, final Folder folder, final Pattern regexp, final int maxDepth, final FutureOperation fut) {
         super();
         this.wc = wc;
         this.folder = folder;
@@ -33,7 +33,7 @@ public class VerticleFolderSearchTask extends AbstractVerticle {
      */
     private void  searchAmongSubFolders(boolean hasNotReachedLimit) {
         if (hasNotReachedLimit) {
-            folder.getSubFolders().forEach(subFolder -> getVertx().deployVerticle(new VerticleFolderSearchTask(wc, subFolder, searchedWord, maxDepth - 1, fut)));
+            folder.getSubFolders().forEach(subFolder -> getVertx().deployVerticle(new VerticleFolderSearch(wc, subFolder, searchedWord, maxDepth - 1, fut)));
         }
     }
 
@@ -46,7 +46,7 @@ public class VerticleFolderSearchTask extends AbstractVerticle {
         folder.getDocuments().forEach(document -> {
             Future<Map<String, Long>> fut = Future.future();
             fut.setHandler(map -> this.fut.onCompleted(map.result()));
-            getVertx().deployVerticle(new VerticleDocumentSearchTask(wc, document, searchedWord, fut));
+            getVertx().deployVerticle(new VerticleDocumentSearch(wc, document, searchedWord, fut));
         });
     }
 

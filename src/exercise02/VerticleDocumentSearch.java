@@ -8,7 +8,7 @@ import io.vertx.core.Future;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class VerticleDocumentSearchTask extends AbstractVerticle {
+public class VerticleDocumentSearch extends AbstractVerticle {
 
     private final Document document;
     private final Pattern searchedWord;
@@ -21,7 +21,7 @@ public class VerticleDocumentSearchTask extends AbstractVerticle {
      * @param document il Documento su cui cercare.
      * @param searchedWord la Regular Expression da cercare.
      */
-    VerticleDocumentSearchTask(WordCounter wc, Document document, Pattern searchedWord, final Future<Map<String, Long>> future) {
+    VerticleDocumentSearch(WordCounter wc, Document document, Pattern searchedWord, final Future<Map<String, Long>> future) {
         super();
         this.document = document;
         this.searchedWord = searchedWord;
