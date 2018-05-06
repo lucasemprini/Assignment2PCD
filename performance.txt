@@ -1,0 +1,735 @@
+
+----- ESERCIZIO 1 : ricerca condotta sulla directory ./src-----
+
+Triggered method setListView : list size = 0
+Found a Task event : list size = 1 tot. matches = 1
+Triggered method setListView : list size = 1
+Triggered method setLabels : tot. files found = 4 - tot. files with at least one match = 4
+Found a Task event : list size = 2 tot. matches = 14
+Triggered method setListView : list size = 2
+Triggered method setLabels : tot. files found = 4 - tot. files with at least one match = 4
+Found a Task event : list size = 3 tot. matches = 16
+Triggered method setListView : list size = 3
+Triggered method setLabels : tot. files found = 4 - tot. files with at least one match = 4
+Found a Task event : list size = 4 tot. matches = 17
+Triggered method setListView : list size = 4
+Triggered method setLabels : tot. files found = 4 - tot. files with at least one match = 4
+Found a Task event : list size = 5 tot. matches = 18
+Triggered method setListView : list size = 5
+Triggered method setLabels : tot. files found = 8 - tot. files with at least one match = 8
+Found a Task event : list size = 6 tot. matches = 19
+Triggered method setListView : list size = 6
+Triggered method setLabels : tot. files found = 9 - tot. files with at least one match = 9
+Found a Task event : list size = 7 tot. matches = 21
+Triggered method setListView : list size = 7
+Triggered method setLabels : tot. files found = 10 - tot. files with at least one match = 10
+Found a Task event : list size = 8 tot. matches = 32
+Triggered method setListView : list size = 8
+Triggered method setLabels : tot. files found = 10 - tot. files with at least one match = 10
+Found a Task event : list size = 9 tot. matches = 33
+Triggered method setListView : list size = 9
+Triggered method setLabels : tot. files found = 13 - tot. files with at least one match = 13
+Found a Task event : list size = 10 tot. matches = 34
+Triggered method setListView : list size = 10
+Triggered method setLabels : tot. files found = 14 - tot. files with at least one match = 14
+Found a Task event : list size = 11 tot. matches = 58
+Triggered method setListView : list size = 11
+Triggered method setLabels : tot. files found = 15 - tot. files with at least one match = 15
+Found a Task event : list size = 12 tot. matches = 64
+Triggered method setListView : list size = 12
+Triggered method setLabels : tot. files found = 15 - tot. files with at least one match = 15
+Found a Task event : list size = 13 tot. matches = 83
+Triggered method setListView : list size = 13
+Triggered method setLabels : tot. files found = 16 - tot. files with at least one match = 16
+Found a Task event : list size = 14 tot. matches = 84
+Triggered method setListView : list size = 14
+Triggered method setLabels : tot. files found = 18 - tot. files with at least one match = 18
+Found a Task event : list size = 15 tot. matches = 85
+Triggered method setListView : list size = 15
+Triggered method setLabels : tot. files found = 19 - tot. files with at least one match = 19
+Found a Task event : list size = 16 tot. matches = 87
+Triggered method setListView : list size = 16
+Triggered method setLabels : tot. files found = 20 - tot. files with at least one match = 20
+Found a Task event : list size = 17 tot. matches = 103
+Triggered method setListView : list size = 17
+Triggered method setLabels : tot. files found = 21 - tot. files with at least one match = 21
+Found a Task event : list size = 18 tot. matches = 110
+Triggered method setListView : list size = 18
+Triggered method setLabels : tot. files found = 21 - tot. files with at least one match = 21
+Found a Task event : list size = 19 tot. matches = 111
+Triggered method setListView : list size = 19
+Triggered method setLabels : tot. files found = 23 - tot. files with at least one match = 23
+Found a Task event : list size = 20 tot. matches = 112
+Triggered method setListView : list size = 20
+Triggered method setLabels : tot. files found = 23 - tot. files with at least one match = 23
+Found a Task event : list size = 21 tot. matches = 120
+Triggered method setListView : list size = 21
+Triggered method setLabels : tot. files found = 24 - tot. files with at least one match = 24
+Found a Task event : list size = 22 tot. matches = 121
+Triggered method setListView : list size = 22
+Triggered method setLabels : tot. files found = 25 - tot. files with at least one match = 25
+Found a Task event : list size = 23 tot. matches = 130
+Triggered method setListView : list size = 23
+Triggered method setLabels : tot. files found = 25 - tot. files with at least one match = 25
+Found a Task event : list size = 24 tot. matches = 131
+Triggered method setListView : list size = 24
+Triggered method setLabels : tot. files found = 27 - tot. files with at least one match = 27
+Found a Task event : list size = 25 tot. matches = 132
+Triggered method setListView : list size = 25
+Triggered method setLabels : tot. files found = 27 - tot. files with at least one match = 27
+Found a Task event : list size = 26 tot. matches = 133
+Triggered method setListView : list size = 26
+Triggered method setLabels : tot. files found = 29 - tot. files with at least one match = 29
+Found a Task event : list size = 27 tot. matches = 134
+Triggered method setListView : list size = 27
+Triggered method setLabels : tot. files found = 30 - tot. files with at least one match = 30
+Found a Task event : list size = 28 tot. matches = 135
+Triggered method setListView : list size = 28
+Triggered method setLabels : tot. files found = 30 - tot. files with at least one match = 30
+Found a Task event : list size = 29 tot. matches = 136
+Triggered method setListView : list size = 29
+Triggered method setLabels : tot. files found = 31 - tot. files with at least one match = 31
+Found a Task event : list size = 30 tot. matches = 137
+Triggered method setListView : list size = 30
+Triggered method setLabels : tot. files found = 31 - tot. files with at least one match = 31
+Found a Task event : list size = 31 tot. matches = 138
+Triggered method setListView : list size = 31
+Triggered method setLabels : tot. files found = 33 - tot. files with at least one match = 33
+Found a Task event : list size = 32 tot. matches = 139
+Triggered method setListView : list size = 32
+Triggered method setLabels : tot. files found = 34 - tot. files with at least one match = 34
+Found a Task event : list size = 33 tot. matches = 140
+Triggered method setListView : list size = 33
+Triggered method setLabels : tot. files found = 34 - tot. files with at least one match = 34
+Found a Task event : list size = 34 tot. matches = 141
+Triggered method setListView : list size = 34
+Triggered method setLabels : tot. files found = 36 - tot. files with at least one match = 36
+Found a Task event : list size = 35 tot. matches = 142
+Triggered method setListView : list size = 35
+Triggered method setLabels : tot. files found = 36 - tot. files with at least one match = 36
+Found a Task event : list size = 36 tot. matches = 143
+Triggered method setListView : list size = 36
+Triggered method setLabels : tot. files found = 38 - tot. files with at least one match = 38
+Found a Task event : list size = 37 tot. matches = 144
+Triggered method setListView : list size = 37
+Triggered method setLabels : tot. files found = 39 - tot. files with at least one match = 39
+Found a Task event : list size = 38 tot. matches = 145
+Triggered method setListView : list size = 38
+Triggered method setLabels : tot. files found = 39 - tot. files with at least one match = 39
+Found a Task event : list size = 39 tot. matches = 146
+Triggered method setListView : list size = 39
+Triggered method setLabels : tot. files found = 41 - tot. files with at least one match = 41
+Found a Task event : list size = 40 tot. matches = 147
+Triggered method setListView : list size = 40
+Triggered method setLabels : tot. files found = 41 - tot. files with at least one match = 41
+Found a Task event : list size = 41 tot. matches = 148
+Triggered method setListView : list size = 41
+Triggered method setLabels : tot. files found = 43 - tot. files with at least one match = 43
+Found a Task event : list size = 42 tot. matches = 149
+Triggered method setListView : list size = 42
+Triggered method setLabels : tot. files found = 44 - tot. files with at least one match = 44
+Found a Task event : list size = 43 tot. matches = 150
+Triggered method setListView : list size = 43
+Triggered method setLabels : tot. files found = 44 - tot. files with at least one match = 44
+Found a Task event : list size = 44 tot. matches = 151
+Triggered method setListView : list size = 44
+Triggered method setLabels : tot. files found = 46 - tot. files with at least one match = 46
+Found a Task event : list size = 45 tot. matches = 152
+Triggered method setListView : list size = 45
+Triggered method setLabels : tot. files found = 46 - tot. files with at least one match = 46
+Found a Task event : list size = 46 tot. matches = 153
+Triggered method setListView : list size = 46
+Triggered method setLabels : tot. files found = 48 - tot. files with at least one match = 48
+Found a Task event : list size = 47 tot. matches = 154
+Triggered method setListView : list size = 47
+Triggered method setLabels : tot. files found = 49 - tot. files with at least one match = 49
+Found a Task event : list size = 48 tot. matches = 155
+Triggered method setListView : list size = 48
+Triggered method setLabels : tot. files found = 49 - tot. files with at least one match = 49
+Found a Task event : list size = 49 tot. matches = 156
+Triggered method setListView : list size = 49
+Triggered method setLabels : tot. files found = 51 - tot. files with at least one match = 51
+Found a Task event : list size = 50 tot. matches = 167
+Triggered method setListView : list size = 50
+Triggered method setLabels : tot. files found = 51 - tot. files with at least one match = 51
+Found a Task event : list size = 51 tot. matches = 168
+Triggered method setListView : list size = 51
+Triggered method setLabels : tot. files found = 53 - tot. files with at least one match = 53
+Found a Task event : list size = 52 tot. matches = 169
+Triggered method setListView : list size = 52
+Triggered method setLabels : tot. files found = 54 - tot. files with at least one match = 54
+Found a Task event : list size = 53 tot. matches = 170
+Triggered method setListView : list size = 53
+Triggered method setLabels : tot. files found = 54 - tot. files with at least one match = 54
+Found a Task event : list size = 54 tot. matches = 171
+Triggered method setListView : list size = 54
+Triggered method setLabels : tot. files found = 56 - tot. files with at least one match = 56
+Found a Task event : list size = 55 tot. matches = 197
+Triggered method setListView : list size = 55
+Triggered method setLabels : tot. files found = 57 - tot. files with at least one match = 57
+Found a Task event : list size = 56 tot. matches = 198
+Triggered method setListView : list size = 56
+Triggered method setLabels : tot. files found = 58 - tot. files with at least one match = 58
+Found a Task event : list size = 57 tot. matches = 199
+Triggered method setListView : list size = 57
+Triggered method setLabels : tot. files found = 59 - tot. files with at least one match = 59
+Found a Task event : list size = 58 tot. matches = 200
+Triggered method setListView : list size = 58
+Triggered method setLabels : tot. files found = 59 - tot. files with at least one match = 59
+Found a Task event : list size = 59 tot. matches = 201
+Triggered method setListView : list size = 59
+Triggered method setLabels : tot. files found = 61 - tot. files with at least one match = 61
+Found a Task event : list size = 60 tot. matches = 202
+Triggered method setListView : list size = 60
+Triggered method setLabels : tot. files found = 62 - tot. files with at least one match = 62
+Found a Task event : list size = 61 tot. matches = 203
+Triggered method setListView : list size = 61
+Triggered method setLabels : tot. files found = 63 - tot. files with at least one match = 63
+Found a Task event : list size = 62 tot. matches = 204
+Triggered method setListView : list size = 62
+Triggered method setLabels : tot. files found = 64 - tot. files with at least one match = 64
+Found a Task event : list size = 63 tot. matches = 205
+Triggered method setListView : list size = 63
+Triggered method setLabels : tot. files found = 64 - tot. files with at least one match = 64
+Found a Task event : list size = 64 tot. matches = 206
+Triggered method setListView : list size = 64
+Triggered method setLabels : tot. files found = 66 - tot. files with at least one match = 66
+Found a Task event : list size = 65 tot. matches = 207
+Triggered method setListView : list size = 65
+Triggered method setLabels : tot. files found = 67 - tot. files with at least one match = 67
+Found a Task event : list size = 66 tot. matches = 208
+Triggered method setListView : list size = 66
+Triggered method setLabels : tot. files found = 68 - tot. files with at least one match = 68
+Found a Task event : list size = 67 tot. matches = 209
+Triggered method setListView : list size = 67
+Triggered method setLabels : tot. files found = 69 - tot. files with at least one match = 69
+Found a Task event : list size = 68 tot. matches = 229
+Triggered method setListView : list size = 68
+Triggered method setLabels : tot. files found = 69 - tot. files with at least one match = 69
+Found a Task event : list size = 69 tot. matches = 230
+Triggered method setListView : list size = 69
+Triggered method setLabels : tot. files found = 71 - tot. files with at least one match = 71
+Found a Task event : list size = 70 tot. matches = 231
+Triggered method setListView : list size = 70
+Triggered method setLabels : tot. files found = 72 - tot. files with at least one match = 72
+Found a Task event : list size = 71 tot. matches = 269
+Triggered method setListView : list size = 71
+Triggered method setLabels : tot. files found = 73 - tot. files with at least one match = 73
+Found a Task event : list size = 72 tot. matches = 270
+Triggered method setListView : list size = 72
+Triggered method setLabels : tot. files found = 74 - tot. files with at least one match = 74
+Found a Task event : list size = 73 tot. matches = 298
+Triggered method setListView : list size = 73
+Triggered method setLabels : tot. files found = 74 - tot. files with at least one match = 74
+Found a Task event : list size = 74 tot. matches = 299
+Triggered method setListView : list size = 74
+Triggered method setLabels : tot. files found = 76 - tot. files with at least one match = 76
+Found a Task event : list size = 75 tot. matches = 300
+Triggered method setListView : list size = 75
+Triggered method setLabels : tot. files found = 77 - tot. files with at least one match = 77
+Found a Task event : list size = 76 tot. matches = 301
+Triggered method setListView : list size = 76
+Triggered method setLabels : tot. files found = 78 - tot. files with at least one match = 78
+Found a Task event : list size = 77 tot. matches = 392
+Triggered method setListView : list size = 77
+Triggered method setLabels : tot. files found = 80 - tot. files with at least one match = 79
+Found a Task event : list size = 78 tot. matches = 393
+Triggered method setListView : list size = 78
+Triggered method setLabels : tot. files found = 81 - tot. files with at least one match = 80
+Found a Task event : list size = 79 tot. matches = 394
+Triggered method setListView : list size = 79
+Triggered method setLabels : tot. files found = 83 - tot. files with at least one match = 82
+Found a Task event : list size = 80 tot. matches = 395
+Triggered method setListView : list size = 80
+Triggered method setLabels : tot. files found = 84 - tot. files with at least one match = 83
+Found a Task event : list size = 81 tot. matches = 409
+Triggered method setListView : list size = 81
+Triggered method setLabels : tot. files found = 85 - tot. files with at least one match = 84
+Found a Task event : list size = 82 tot. matches = 409
+Triggered method setListView : list size = 82
+Triggered method setLabels : tot. files found = 85 - tot. files with at least one match = 84
+Found a Task event : list size = 83 tot. matches = 410
+Triggered method setListView : list size = 83
+Triggered method setLabels : tot. files found = 87 - tot. files with at least one match = 86
+Found a Task event : list size = 84 tot. matches = 411
+Triggered method setListView : list size = 84
+Triggered method setLabels : tot. files found = 88 - tot. files with at least one match = 87
+Found a Task event : list size = 85 tot. matches = 412
+Triggered method setListView : list size = 85
+Triggered method setLabels : tot. files found = 88 - tot. files with at least one match = 87
+Found a Task event : list size = 86 tot. matches = 413
+Triggered method setListView : list size = 86
+Triggered method setLabels : tot. files found = 90 - tot. files with at least one match = 89
+Found a Task event : list size = 87 tot. matches = 414
+Triggered method setListView : list size = 87
+Triggered method setLabels : tot. files found = 90 - tot. files with at least one match = 89
+Found a Task event : list size = 88 tot. matches = 415
+Triggered method setListView : list size = 88
+Triggered method setLabels : tot. files found = 91 - tot. files with at least one match = 90
+Found a Task event : list size = 89 tot. matches = 416
+Triggered method setListView : list size = 89
+Triggered method setLabels : tot. files found = 92 - tot. files with at least one match = 91
+Found a Task event : list size = 90 tot. matches = 417
+Triggered method setListView : list size = 90
+Triggered method setLabels : tot. files found = 93 - tot. files with at least one match = 92
+Found a Task event : list size = 91 tot. matches = 418
+Triggered method setListView : list size = 91
+Triggered method setLabels : tot. files found = 95 - tot. files with at least one match = 94
+Found a Task event : list size = 92 tot. matches = 419
+Triggered method setListView : list size = 92
+Triggered method setLabels : tot. files found = 95 - tot. files with at least one match = 94
+Found a Task event : list size = 93 tot. matches = 420
+Triggered method setListView : list size = 93
+Triggered method setLabels : tot. files found = 98 - tot. files with at least one match = 97
+Found a Task event : list size = 94 tot. matches = 421
+Triggered method setListView : list size = 94
+Triggered method setLabels : tot. files found = 98 - tot. files with at least one match = 97
+Found a Task event : list size = 95 tot. matches = 422
+Triggered method setListView : list size = 95
+Triggered method setLabels : tot. files found = 99 - tot. files with at least one match = 98
+Found a Task event : list size = 96 tot. matches = 423
+Triggered method setListView : list size = 96
+Triggered method setLabels : tot. files found = 102 - tot. files with at least one match = 101
+Found a Task event : list size = 97 tot. matches = 424
+Triggered method setListView : list size = 97
+Triggered method setLabels : tot. files found = 103 - tot. files with at least one match = 102
+Found a Task event : list size = 98 tot. matches = 425
+Triggered method setListView : list size = 98
+Triggered method setLabels : tot. files found = 104 - tot. files with at least one match = 103
+Found a Task event : list size = 99 tot. matches = 426
+Triggered method setListView : list size = 99
+Triggered method setLabels : tot. files found = 104 - tot. files with at least one match = 103
+Found a Task event : list size = 100 tot. matches = 427
+Triggered method setListView : list size = 100
+Triggered method setLabels : tot. files found = 106 - tot. files with at least one match = 105
+Found a Task event : list size = 101 tot. matches = 428
+Triggered method setListView : list size = 101
+Triggered method setLabels : tot. files found = 107 - tot. files with at least one match = 106
+Found a Task event : list size = 102 tot. matches = 429
+Triggered method setListView : list size = 102
+Triggered method setLabels : tot. files found = 108 - tot. files with at least one match = 107
+Found a Task event : list size = 103 tot. matches = 430
+Triggered method setListView : list size = 103
+Triggered method setLabels : tot. files found = 108 - tot. files with at least one match = 107
+Found a Task event : list size = 104 tot. matches = 431
+Triggered method setListView : list size = 104
+Triggered method setLabels : tot. files found = 110 - tot. files with at least one match = 109
+Found a Task event : list size = 105 tot. matches = 432
+Triggered method setListView : list size = 105
+Triggered method setLabels : tot. files found = 111 - tot. files with at least one match = 110
+Found a Task event : list size = 106 tot. matches = 433
+Triggered method setListView : list size = 106
+Triggered method setLabels : tot. files found = 111 - tot. files with at least one match = 110
+Found a Task event : list size = 107 tot. matches = 434
+Triggered method setListView : list size = 107
+Triggered method setLabels : tot. files found = 112 - tot. files with at least one match = 111
+Found a Task event : list size = 108 tot. matches = 435
+Triggered method setListView : list size = 108
+Triggered method setLabels : tot. files found = 112 - tot. files with at least one match = 111
+Found a Task event : list size = 109 tot. matches = 436
+Triggered method setListView : list size = 109
+Triggered method setLabels : tot. files found = 114 - tot. files with at least one match = 113
+Found a Task event : list size = 110 tot. matches = 437
+Triggered method setListView : list size = 110
+Triggered method setLabels : tot. files found = 117 - tot. files with at least one match = 116
+Found a Task event : list size = 111 tot. matches = 438
+Triggered method setListView : list size = 111
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 112 tot. matches = 439
+Triggered method setListView : list size = 112
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 113 tot. matches = 440
+Triggered method setListView : list size = 113
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 114 tot. matches = 441
+Triggered method setListView : list size = 114
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 115 tot. matches = 442
+Triggered method setListView : list size = 115
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 116 tot. matches = 443
+Triggered method setListView : list size = 116
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 117 tot. matches = 444
+Triggered method setListView : list size = 117
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 118 tot. matches = 445
+Triggered method setListView : list size = 118
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 119 tot. matches = 446
+Triggered method setListView : list size = 119
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+Found a Task event : list size = 120 tot. matches = 447
+Triggered method setListView : list size = 120
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 117
+
+*** Fork / join search took 2229ms. Slept 100 ms for each document found ***
+
+----- ESERCIZIO 2 : ricerca condotta sulla directory ./src -----
+
+
+----- ESERCIZIO 3 : ricerca condotta sulla directory ./src -----
+
+Triggered method setListView : list size = 0
+Found a Reactive event : list size = 1 tot. matches = 1
+Triggered method setListView : list size = 1
+Triggered method setLabels : tot. files found = 1 - tot. files with at least one match = 1
+Found a Reactive event : list size = 2 tot. matches = 14
+Triggered method setListView : list size = 2
+Triggered method setLabels : tot. files found = 2 - tot. files with at least one match = 2
+Found a Reactive event : list size = 3 tot. matches = 16
+Triggered method setListView : list size = 3
+Triggered method setLabels : tot. files found = 3 - tot. files with at least one match = 3
+Found a Reactive event : list size = 4 tot. matches = 17
+Triggered method setListView : list size = 4
+Triggered method setLabels : tot. files found = 4 - tot. files with at least one match = 4
+Found a Reactive event : list size = 5 tot. matches = 18
+Triggered method setListView : list size = 5
+Triggered method setLabels : tot. files found = 5 - tot. files with at least one match = 5
+Found a Reactive event : list size = 6 tot. matches = 19
+Triggered method setListView : list size = 6
+Triggered method setLabels : tot. files found = 6 - tot. files with at least one match = 6
+Found a Reactive event : list size = 7 tot. matches = 20
+Triggered method setListView : list size = 7
+Triggered method setLabels : tot. files found = 7 - tot. files with at least one match = 7
+Found a Reactive event : list size = 8 tot. matches = 21
+Triggered method setListView : list size = 8
+Triggered method setLabels : tot. files found = 8 - tot. files with at least one match = 8
+Found a Reactive event : list size = 9 tot. matches = 22
+Triggered method setListView : list size = 9
+Triggered method setLabels : tot. files found = 9 - tot. files with at least one match = 9
+Found a Reactive event : list size = 10 tot. matches = 23
+Triggered method setListView : list size = 10
+Triggered method setLabels : tot. files found = 10 - tot. files with at least one match = 10
+Found a Reactive event : list size = 11 tot. matches = 24
+Triggered method setListView : list size = 11
+Triggered method setLabels : tot. files found = 11 - tot. files with at least one match = 11
+Found a Reactive event : list size = 12 tot. matches = 25
+Triggered method setListView : list size = 12
+Triggered method setLabels : tot. files found = 12 - tot. files with at least one match = 12
+Found a Reactive event : list size = 13 tot. matches = 26
+Triggered method setListView : list size = 13
+Triggered method setLabels : tot. files found = 13 - tot. files with at least one match = 13
+Found a Reactive event : list size = 14 tot. matches = 27
+Triggered method setListView : list size = 14
+Triggered method setLabels : tot. files found = 14 - tot. files with at least one match = 14
+Found a Reactive event : list size = 15 tot. matches = 28
+Triggered method setListView : list size = 15
+Triggered method setLabels : tot. files found = 15 - tot. files with at least one match = 15
+Found a Reactive event : list size = 16 tot. matches = 29
+Triggered method setListView : list size = 16
+Triggered method setLabels : tot. files found = 16 - tot. files with at least one match = 16
+Found a Reactive event : list size = 17 tot. matches = 30
+Triggered method setListView : list size = 17
+Triggered method setLabels : tot. files found = 17 - tot. files with at least one match = 17
+Found a Reactive event : list size = 18 tot. matches = 31
+Triggered method setListView : list size = 18
+Triggered method setLabels : tot. files found = 18 - tot. files with at least one match = 18
+Found a Reactive event : list size = 19 tot. matches = 32
+Triggered method setListView : list size = 19
+Triggered method setLabels : tot. files found = 19 - tot. files with at least one match = 19
+Found a Reactive event : list size = 20 tot. matches = 33
+Triggered method setListView : list size = 20
+Triggered method setLabels : tot. files found = 20 - tot. files with at least one match = 20
+Found a Reactive event : list size = 21 tot. matches = 34
+Triggered method setListView : list size = 21
+Triggered method setLabels : tot. files found = 21 - tot. files with at least one match = 21
+Found a Reactive event : list size = 22 tot. matches = 35
+Triggered method setListView : list size = 22
+Triggered method setLabels : tot. files found = 22 - tot. files with at least one match = 22
+Found a Reactive event : list size = 23 tot. matches = 36
+Triggered method setListView : list size = 23
+Triggered method setLabels : tot. files found = 23 - tot. files with at least one match = 23
+Found a Reactive event : list size = 24 tot. matches = 37
+Triggered method setListView : list size = 24
+Triggered method setLabels : tot. files found = 24 - tot. files with at least one match = 24
+Found a Reactive event : list size = 25 tot. matches = 38
+Triggered method setListView : list size = 25
+Triggered method setLabels : tot. files found = 25 - tot. files with at least one match = 25
+Found a Reactive event : list size = 26 tot. matches = 39
+Triggered method setListView : list size = 26
+Triggered method setLabels : tot. files found = 26 - tot. files with at least one match = 26
+Found a Reactive event : list size = 27 tot. matches = 40
+Triggered method setListView : list size = 27
+Triggered method setLabels : tot. files found = 27 - tot. files with at least one match = 27
+Found a Reactive event : list size = 28 tot. matches = 41
+Triggered method setListView : list size = 28
+Triggered method setLabels : tot. files found = 28 - tot. files with at least one match = 28
+Found a Reactive event : list size = 29 tot. matches = 42
+Triggered method setListView : list size = 29
+Triggered method setLabels : tot. files found = 29 - tot. files with at least one match = 29
+Found a Reactive event : list size = 30 tot. matches = 43
+Triggered method setListView : list size = 30
+Triggered method setLabels : tot. files found = 30 - tot. files with at least one match = 30
+Found a Reactive event : list size = 31 tot. matches = 44
+Triggered method setListView : list size = 31
+Triggered method setLabels : tot. files found = 31 - tot. files with at least one match = 31
+Found a Reactive event : list size = 32 tot. matches = 45
+Triggered method setListView : list size = 32
+Triggered method setLabels : tot. files found = 32 - tot. files with at least one match = 32
+Found a Reactive event : list size = 33 tot. matches = 46
+Triggered method setListView : list size = 33
+Triggered method setLabels : tot. files found = 33 - tot. files with at least one match = 33
+Found a Reactive event : list size = 34 tot. matches = 47
+Triggered method setListView : list size = 34
+Triggered method setLabels : tot. files found = 34 - tot. files with at least one match = 34
+Found a Reactive event : list size = 35 tot. matches = 48
+Triggered method setListView : list size = 35
+Triggered method setLabels : tot. files found = 35 - tot. files with at least one match = 35
+Found a Reactive event : list size = 36 tot. matches = 49
+Triggered method setListView : list size = 36
+Triggered method setLabels : tot. files found = 36 - tot. files with at least one match = 36
+Found a Reactive event : list size = 37 tot. matches = 50
+Triggered method setListView : list size = 37
+Triggered method setLabels : tot. files found = 37 - tot. files with at least one match = 37
+Found a Reactive event : list size = 38 tot. matches = 51
+Triggered method setListView : list size = 38
+Triggered method setLabels : tot. files found = 38 - tot. files with at least one match = 38
+Found a Reactive event : list size = 39 tot. matches = 52
+Triggered method setListView : list size = 39
+Triggered method setLabels : tot. files found = 39 - tot. files with at least one match = 39
+Found a Reactive event : list size = 40 tot. matches = 53
+Triggered method setListView : list size = 40
+Triggered method setLabels : tot. files found = 40 - tot. files with at least one match = 40
+Found a Reactive event : list size = 41 tot. matches = 54
+Triggered method setListView : list size = 41
+Triggered method setLabels : tot. files found = 41 - tot. files with at least one match = 41
+Found a Reactive event : list size = 42 tot. matches = 55
+Triggered method setListView : list size = 42
+Triggered method setLabels : tot. files found = 42 - tot. files with at least one match = 42
+Found a Reactive event : list size = 43 tot. matches = 56
+Triggered method setListView : list size = 43
+Triggered method setLabels : tot. files found = 43 - tot. files with at least one match = 43
+Found a Reactive event : list size = 44 tot. matches = 57
+Triggered method setListView : list size = 44
+Triggered method setLabels : tot. files found = 44 - tot. files with at least one match = 44
+Found a Reactive event : list size = 45 tot. matches = 58
+Triggered method setListView : list size = 45
+Triggered method setLabels : tot. files found = 45 - tot. files with at least one match = 45
+Found a Reactive event : list size = 46 tot. matches = 59
+Triggered method setListView : list size = 46
+Triggered method setLabels : tot. files found = 46 - tot. files with at least one match = 46
+Found a Reactive event : list size = 47 tot. matches = 60
+Triggered method setListView : list size = 47
+Triggered method setLabels : tot. files found = 47 - tot. files with at least one match = 47
+Found a Reactive event : list size = 48 tot. matches = 61
+Triggered method setListView : list size = 48
+Triggered method setLabels : tot. files found = 48 - tot. files with at least one match = 48
+Found a Reactive event : list size = 49 tot. matches = 62
+Triggered method setListView : list size = 49
+Triggered method setLabels : tot. files found = 49 - tot. files with at least one match = 49
+Found a Reactive event : list size = 50 tot. matches = 63
+Triggered method setListView : list size = 50
+Triggered method setLabels : tot. files found = 50 - tot. files with at least one match = 50
+Found a Reactive event : list size = 51 tot. matches = 64
+Triggered method setListView : list size = 51
+Triggered method setLabels : tot. files found = 51 - tot. files with at least one match = 51
+Found a Reactive event : list size = 52 tot. matches = 65
+Triggered method setListView : list size = 52
+Triggered method setLabels : tot. files found = 52 - tot. files with at least one match = 52
+Found a Reactive event : list size = 53 tot. matches = 66
+Triggered method setListView : list size = 53
+Triggered method setLabels : tot. files found = 53 - tot. files with at least one match = 53
+Found a Reactive event : list size = 54 tot. matches = 67
+Triggered method setListView : list size = 54
+Triggered method setLabels : tot. files found = 54 - tot. files with at least one match = 54
+Found a Reactive event : list size = 55 tot. matches = 68
+Triggered method setListView : list size = 55
+Triggered method setLabels : tot. files found = 55 - tot. files with at least one match = 55
+Found a Reactive event : list size = 56 tot. matches = 69
+Triggered method setListView : list size = 56
+Triggered method setLabels : tot. files found = 56 - tot. files with at least one match = 56
+Found a Reactive event : list size = 57 tot. matches = 70
+Triggered method setListView : list size = 57
+Triggered method setLabels : tot. files found = 57 - tot. files with at least one match = 57
+Found a Reactive event : list size = 58 tot. matches = 71
+Triggered method setListView : list size = 58
+Triggered method setLabels : tot. files found = 58 - tot. files with at least one match = 58
+Found a Reactive event : list size = 59 tot. matches = 72
+Triggered method setListView : list size = 59
+Triggered method setLabels : tot. files found = 59 - tot. files with at least one match = 59
+Found a Reactive event : list size = 60 tot. matches = 73
+Triggered method setListView : list size = 60
+Triggered method setLabels : tot. files found = 60 - tot. files with at least one match = 60
+Found a Reactive event : list size = 61 tot. matches = 74
+Triggered method setListView : list size = 61
+Triggered method setLabels : tot. files found = 61 - tot. files with at least one match = 61
+Found a Reactive event : list size = 62 tot. matches = 75
+Triggered method setListView : list size = 62
+Triggered method setLabels : tot. files found = 62 - tot. files with at least one match = 62
+Found a Reactive event : list size = 63 tot. matches = 76
+Triggered method setListView : list size = 63
+Triggered method setLabels : tot. files found = 63 - tot. files with at least one match = 63
+Found a Reactive event : list size = 64 tot. matches = 77
+Triggered method setListView : list size = 64
+Triggered method setLabels : tot. files found = 64 - tot. files with at least one match = 64
+Found a Reactive event : list size = 65 tot. matches = 78
+Triggered method setListView : list size = 65
+Triggered method setLabels : tot. files found = 65 - tot. files with at least one match = 65
+Found a Reactive event : list size = 66 tot. matches = 79
+Triggered method setListView : list size = 66
+Triggered method setLabels : tot. files found = 66 - tot. files with at least one match = 66
+Found a Reactive event : list size = 67 tot. matches = 80
+Triggered method setListView : list size = 67
+Triggered method setLabels : tot. files found = 67 - tot. files with at least one match = 67
+Found a Reactive event : list size = 68 tot. matches = 81
+Triggered method setListView : list size = 68
+Triggered method setLabels : tot. files found = 68 - tot. files with at least one match = 68
+Found a Reactive event : list size = 69 tot. matches = 82
+Triggered method setListView : list size = 69
+Triggered method setLabels : tot. files found = 69 - tot. files with at least one match = 69
+Found a Reactive event : list size = 70 tot. matches = 83
+Triggered method setListView : list size = 70
+Triggered method setLabels : tot. files found = 70 - tot. files with at least one match = 70
+Found a Reactive event : list size = 71 tot. matches = 84
+Triggered method setListView : list size = 71
+Triggered method setLabels : tot. files found = 71 - tot. files with at least one match = 71
+Found a Reactive event : list size = 72 tot. matches = 85
+Triggered method setListView : list size = 72
+Triggered method setLabels : tot. files found = 72 - tot. files with at least one match = 72
+Found a Reactive event : list size = 73 tot. matches = 86
+Triggered method setListView : list size = 73
+Triggered method setLabels : tot. files found = 73 - tot. files with at least one match = 73
+Found a Reactive event : list size = 74 tot. matches = 87
+Triggered method setListView : list size = 74
+Triggered method setLabels : tot. files found = 74 - tot. files with at least one match = 74
+Found a Reactive event : list size = 75 tot. matches = 88
+Triggered method setListView : list size = 75
+Triggered method setLabels : tot. files found = 75 - tot. files with at least one match = 75
+Found a Reactive event : list size = 76 tot. matches = 89
+Triggered method setListView : list size = 76
+Triggered method setLabels : tot. files found = 76 - tot. files with at least one match = 76
+Found a Reactive event : list size = 77 tot. matches = 90
+Triggered method setListView : list size = 77
+Triggered method setLabels : tot. files found = 77 - tot. files with at least one match = 77
+Found a Reactive event : list size = 78 tot. matches = 91
+Triggered method setListView : list size = 78
+Triggered method setLabels : tot. files found = 78 - tot. files with at least one match = 78
+Found a Reactive event : list size = 79 tot. matches = 92
+Triggered method setListView : list size = 79
+Triggered method setLabels : tot. files found = 79 - tot. files with at least one match = 79
+Found a Reactive event : list size = 80 tot. matches = 93
+Triggered method setListView : list size = 80
+Triggered method setLabels : tot. files found = 80 - tot. files with at least one match = 80
+Found a Reactive event : list size = 81 tot. matches = 94
+Triggered method setListView : list size = 81
+Triggered method setLabels : tot. files found = 81 - tot. files with at least one match = 81
+Found a Reactive event : list size = 82 tot. matches = 95
+Triggered method setListView : list size = 82
+Triggered method setLabels : tot. files found = 82 - tot. files with at least one match = 82
+Found a Reactive event : list size = 83 tot. matches = 96
+Triggered method setListView : list size = 83
+Triggered method setLabels : tot. files found = 83 - tot. files with at least one match = 83
+Found a Reactive event : list size = 84 tot. matches = 97
+Triggered method setListView : list size = 84
+Triggered method setLabels : tot. files found = 84 - tot. files with at least one match = 84
+Found a Reactive event : list size = 85 tot. matches = 98
+Triggered method setListView : list size = 85
+Triggered method setLabels : tot. files found = 85 - tot. files with at least one match = 85
+Found a Reactive event : list size = 86 tot. matches = 99
+Triggered method setListView : list size = 86
+Triggered method setLabels : tot. files found = 86 - tot. files with at least one match = 86
+Found a Reactive event : list size = 87 tot. matches = 100
+Triggered method setListView : list size = 87
+Triggered method setLabels : tot. files found = 87 - tot. files with at least one match = 87
+Found a Reactive event : list size = 88 tot. matches = 101
+Triggered method setListView : list size = 88
+Triggered method setLabels : tot. files found = 88 - tot. files with at least one match = 88
+Found a Reactive event : list size = 89 tot. matches = 102
+Triggered method setListView : list size = 89
+Triggered method setLabels : tot. files found = 89 - tot. files with at least one match = 89
+Found a Reactive event : list size = 90 tot. matches = 103
+Triggered method setListView : list size = 90
+Triggered method setLabels : tot. files found = 90 - tot. files with at least one match = 90
+Found a Reactive event : list size = 91 tot. matches = 104
+Triggered method setListView : list size = 91
+Triggered method setLabels : tot. files found = 91 - tot. files with at least one match = 91
+Found a Reactive event : list size = 92 tot. matches = 105
+Triggered method setListView : list size = 92
+Triggered method setLabels : tot. files found = 92 - tot. files with at least one match = 92
+Found a Reactive event : list size = 93 tot. matches = 106
+Triggered method setListView : list size = 93
+Triggered method setLabels : tot. files found = 93 - tot. files with at least one match = 93
+Found a Reactive event : list size = 94 tot. matches = 107
+Triggered method setListView : list size = 94
+Triggered method setLabels : tot. files found = 94 - tot. files with at least one match = 94
+Found a Reactive event : list size = 95 tot. matches = 108
+Triggered method setListView : list size = 95
+Triggered method setLabels : tot. files found = 95 - tot. files with at least one match = 95
+Found a Reactive event : list size = 96 tot. matches = 109
+Triggered method setListView : list size = 96
+Triggered method setLabels : tot. files found = 96 - tot. files with at least one match = 96
+Found a Reactive event : list size = 97 tot. matches = 110
+Triggered method setListView : list size = 97
+Triggered method setLabels : tot. files found = 97 - tot. files with at least one match = 97
+Found a Reactive event : list size = 98 tot. matches = 111
+Triggered method setListView : list size = 98
+Triggered method setLabels : tot. files found = 98 - tot. files with at least one match = 98
+Found a Reactive event : list size = 99 tot. matches = 112
+Triggered method setListView : list size = 99
+Triggered method setLabels : tot. files found = 99 - tot. files with at least one match = 99
+Found a Reactive event : list size = 100 tot. matches = 113
+Triggered method setListView : list size = 100
+Triggered method setLabels : tot. files found = 100 - tot. files with at least one match = 100
+Found a Reactive event : list size = 101 tot. matches = 114
+Triggered method setListView : list size = 101
+Triggered method setLabels : tot. files found = 101 - tot. files with at least one match = 101
+Found a Reactive event : list size = 102 tot. matches = 115
+Triggered method setListView : list size = 102
+Triggered method setLabels : tot. files found = 102 - tot. files with at least one match = 102
+Found a Reactive event : list size = 103 tot. matches = 139
+Triggered method setListView : list size = 103
+Triggered method setLabels : tot. files found = 103 - tot. files with at least one match = 103
+Found a Reactive event : list size = 104 tot. matches = 150
+Triggered method setListView : list size = 104
+Triggered method setLabels : tot. files found = 104 - tot. files with at least one match = 104
+Found a Reactive event : list size = 105 tot. matches = 176
+Triggered method setListView : list size = 105
+Triggered method setLabels : tot. files found = 105 - tot. files with at least one match = 105
+Found a Reactive event : list size = 106 tot. matches = 196
+Triggered method setListView : list size = 106
+Triggered method setLabels : tot. files found = 106 - tot. files with at least one match = 106
+Found a Reactive event : list size = 107 tot. matches = 234
+Triggered method setListView : list size = 107
+Triggered method setLabels : tot. files found = 107 - tot. files with at least one match = 107
+Found a Reactive event : list size = 108 tot. matches = 236
+Triggered method setListView : list size = 108
+Triggered method setLabels : tot. files found = 108 - tot. files with at least one match = 108
+Found a Reactive event : list size = 109 tot. matches = 247
+Triggered method setListView : list size = 109
+Triggered method setLabels : tot. files found = 109 - tot. files with at least one match = 109
+Found a Reactive event : list size = 110 tot. matches = 266
+Triggered method setListView : list size = 110
+Triggered method setLabels : tot. files found = 110 - tot. files with at least one match = 110
+Found a Reactive event : list size = 111 tot. matches = 273
+Triggered method setListView : list size = 111
+Triggered method setLabels : tot. files found = 111 - tot. files with at least one match = 111
+Found a Reactive event : list size = 112 tot. matches = 279
+Triggered method setListView : list size = 112
+Triggered method setLabels : tot. files found = 112 - tot. files with at least one match = 112
+Found a Reactive event : list size = 113 tot. matches = 295
+Triggered method setListView : list size = 113
+Triggered method setLabels : tot. files found = 113 - tot. files with at least one match = 113
+Found a Reactive event : list size = 114 tot. matches = 304
+Triggered method setListView : list size = 114
+Triggered method setLabels : tot. files found = 114 - tot. files with at least one match = 114
+Found a Reactive event : list size = 115 tot. matches = 306
+Triggered method setListView : list size = 115
+Triggered method setLabels : tot. files found = 115 - tot. files with at least one match = 115
+Found a Reactive event : list size = 116 tot. matches = 314
+Triggered method setListView : list size = 116
+Triggered method setLabels : tot. files found = 116 - tot. files with at least one match = 116
+Found a Reactive event : list size = 117 tot. matches = 342
+Triggered method setListView : list size = 117
+Triggered method setLabels : tot. files found = 117 - tot. files with at least one match = 117
+Found a Reactive event : list size = 118 tot. matches = 433
+Triggered method setListView : list size = 118
+Triggered method setLabels : tot. files found = 118 - tot. files with at least one match = 118
+Found a Reactive event : list size = 119 tot. matches = 447
+Triggered method setListView : list size = 119
+Triggered method setLabels : tot. files found = 119 - tot. files with at least one match = 119
+Found a Reactive event : list size = 120 tot. matches = 447
+Triggered method setListView : list size = 120
+Triggered method setLabels : tot. files found = 120 - tot. files with at least one match = 119
+
+*** Reactive search took 12100ms. Slept 100 ms for each document found ***
