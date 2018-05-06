@@ -365,6 +365,7 @@ Triggered method setLabels : tot. files found = 118 - tot. files with at least o
 
 *** Fork / join search took 2229ms. Slept 100 ms for each document found ***
 
+
 ----- ESERCIZIO 2 : ricerca condotta sulla directory ./src -----
 
 Triggered method setListView : list size = 0
