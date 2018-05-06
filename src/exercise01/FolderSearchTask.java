@@ -1,5 +1,8 @@
 package exercise01;
 
+import commons.model.Document;
+import commons.model.Folder;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

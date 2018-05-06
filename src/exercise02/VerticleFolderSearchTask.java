@@ -1,12 +1,11 @@
 package exercise02;
 
+import commons.model.Folder;
 import exercise01.*;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;
 
 public class VerticleFolderSearchTask extends AbstractVerticle {

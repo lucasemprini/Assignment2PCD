@@ -1,6 +1,6 @@
 package exercise03;
 
-import exercise01.Document;
+import commons.model.Document;
 import exercise01.WordCounter;
 import io.reactivex.Observer;
 

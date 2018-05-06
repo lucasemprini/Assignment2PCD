@@ -1,4 +1,4 @@
-package utility;
+package commons.utility;
 
 public final class MathUtility {
     private  MathUtility() {}

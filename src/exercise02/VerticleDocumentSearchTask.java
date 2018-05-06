@@ -1,6 +1,6 @@
 package exercise02;
 
-import exercise01.Document;
+import commons.model.Document;
 import exercise01.WordCounter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;

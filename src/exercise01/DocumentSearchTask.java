@@ -1,11 +1,7 @@
 package exercise01;
 
-import exercise01.events.FileEventListener;
-import exercise01.events.FileFoundEvent;
-import exercise01.events.FileFoundEventImpl;
+import commons.model.Document;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.RecursiveTask;
 import java.util.regex.Pattern;

@@ -1,6 +1,6 @@
-package view;
+package commons.view;
 
-import exercise01.Folder;
+import commons.model.Folder;
 import exercise01.WordCounter;
 import exercise02.VerticleWordCounter;
 import exercise03.ReactiveWordCounter;
@@ -11,8 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.util.Pair;
-import utility.MathUtility;
-import utility.StringUtilities;
+import commons.utility.MathUtility;
+import commons.utility.StringUtilities;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,5 +1,7 @@
 package exercise01;
 
+import commons.model.Document;
+import commons.model.Folder;
 import exercise01.events.FileEventListener;
 import exercise01.events.FileFoundEvent;
 import exercise01.events.FileFoundEventImpl;

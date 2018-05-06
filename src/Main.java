@@ -1,17 +1,16 @@
-import exercise01.WordCounter;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.ViewController;
+import commons.view.ViewController;
 
 import java.io.IOException;
 
 public class Main extends Application{
 
-    private static final String LAYOUT_PATH = "/view/view.fxml";
+    private static final String LAYOUT_PATH = "/commons/view/view.fxml";
     private static final String WINDOW_TITLE = "REGEXP MATCHING TOOL";
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package exercise02;
 
-import exercise01.Folder;
+import commons.model.Folder;
 import exercise01.WordCounter;
 import io.vertx.core.Vertx;
 

@@ -1,6 +1,5 @@
 package exercise01.events;
 
-import exercise01.Document;
 import javafx.util.Pair;
 
 public interface FileFoundEvent {

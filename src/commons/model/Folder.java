@@ -1,6 +1,6 @@
-package exercise01;
+package commons.model;
 
-import utility.StringUtilities;
+import commons.utility.StringUtilities;
 
 import java.io.File;
 import java.io.IOException;
